@@ -1,178 +1,259 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jidokwan Julietas</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>JDK Jidokwan</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        html, body {
-            height: 100%;
+        @import url('https://fonts.googleapis.com/css2?family=Protest+Revolution&display=swap');
+
+        .navbar {
+            background-color: #091d56;
         }
-        body {
+
+        .navbar-brand img {
+            max-height: 50px;
+            width: auto;
+        }
+
+        #inicio {
+            position: relative;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),
+                        url('images/fondo.jpg') no-repeat center center / cover;
+            color: white;
+            height: 100vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
-        .content {
-            flex: 1;
+
+        #inicio::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(248, 249, 250, 1));
+            pointer-events: none;
         }
-        footer, .navbar {
-            background-color: #072146;
-            padding: 1rem 0;
+
+        #bienvenidos {
+            font-family: "Protest Revolution", sans-serif;
+            font-size: 8vw; /* Adaptable según el ancho de pantalla */
         }
-        .navbar-custom {
-            background-color: #072146;
+
+        #btn-53 {
+            border: 1px solid;
+            border-radius: 999px;
+            padding: 1.2rem 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
-        .img-logoNav {
-            width: 90px;
-            height: 90px;
-            margin-left: 30px;
-        }
-        .personajesNav {
-            width: 170px;
-            height: 100px;
-        }
-        #contenedorBotom {
+
+        #btn-53 .original {
+            background: #091d56;
             color: white;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-        }
-
-        .btn-customAcc {
-            background-color: #0E2A52;
-            color: white;
-            border: 2px solid #072146;
-            padding: 2rem 2rem;
-            border-radius: 10px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .btn-customAcc:active {
-            color: white;
-            box-shadow: 0 0.2rem #dfd9d9;
-            transform: translateY(0.2rem);
-        }
-        .btn-customAcc:hover:not(:disabled) {
-            background: white;
-            color: #072146;
-            text-shadow: 0 0.1rem #bcb4b4;
-        }
-        .header-text {
-            color: white;
-            margin: 0 20px;
-        }
-        .footer-logo {
-            width: 60px;
-            height: 60px;
-        }
-        .footer-link {
-            color: white;
-        }
-        .imgFace {
-            width: 28px;
-            height: 28px;
-            margin-right: 5px;
-        }
-        .carousel-item {
-            position: relative;
-        }
-        .carousel-caption {
             position: absolute;
-            bottom: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 1rem;
-            border-radius: 10px;
+            inset: 0;
+            transition: transform 0.2s ease-in-out;
         }
 
-        #container-fluid{
-            background-color: #072146;
+        #btn-53:hover .original {
+            transform: translateY(100%);
         }
+
+        #btn-53 .letters span {
+            opacity: 0;
+            transform: translateY(-15px);
+            transition: transform 0.2s ease-in-out, opacity 0.2s;
+        }
+
+        #btn-53:hover .letters span {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .carousel-inner {
+            height: 100vh; /* Altura adaptable */
+        }
+
+        .carousel-item img,
+        .carousel-item video {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        #conocenos {
+            font-family: "Protest Revolution", sans-serif;
+            font-size: 6vw; /* Adaptable según el ancho de pantalla */
+            text-align: center;
+        }
+
+        .text-muted {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+        }
+
+        /* Media Queries para ajustes específicos */
+        @media (max-width: 768px) {
+            #bienvenidos {
+                font-size: 12vw; /* Más grande en pantallas pequeñas */
+            }
+
+            #conocenos {
+                font-size: 8vw;
+            }
+
+            .carousel-inner {
+                height: 50vh;
+            }
+        }
+
+        @media (max-width: 576px) {
+            #btn-53 {
+                padding: 0.8rem 2rem;
+            }
+
+            iframe {
+                height: 300px;
+            }
+        }
+        header img {
+    max-width: 200px; /* Tamaño máximo de la imagen */
+    height: auto; /* Mantener proporciones */
+    margin-bottom: 20px; /* Separación entre imagen y texto */
+}
 
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-        <div class="container-fluid">
-            <div class="row w-100">
-                <div class="col-4 d-flex align-items-center">
-                    <img src="{{ asset('images/JDKJulietasLogoBlanco.png') }}" alt="" class="img-logoNav">
-                </div>
-                <div class="col-4 d-flex justify-content-center">
-                    <img src="{{ asset('images/MonosBlanco.png') }}" alt="" class="personajesNav">
-                </div>
-                <div class="col-4 d-flex justify-content-end align-items-center" id="contenedorBotom">
-                    <a href="../login" class="btn-customAcc">Acceso</a>
-                </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">JidoKwan Julietas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../login">Acceso</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
+    <!-- Header Section -->
+    <header id="inicio">
+    <!-- Logo arriba del texto -->
+    <img src="images/JDKJulietasLogoBlanco.png" alt="Logo Jidokwan Julietas" class="pavo-izquierdo" style="max-width: 200px; margin-bottom: 100px;">
+    <h1 id="bienvenidos">Bienvenidos</h1>
+    <a href="#acerca" id="btn-53" role="button">
+        <div class="original">CONÓCENOS</div>
+        <div class="letters">
+            <span>C</span><span>O</span><span>N</span><span>O</span><span>C</span><span>E</span><span>N</span><span>O</span><span>S</span>
+        </div>
+    </a>
+</header>
 
-    <div id="container-fluid">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="{{ asset('images/pic1.jpg') }}" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Primera Imagen</h5>
-                        <p>Descripción de la primera imagen.</p>
+
+    <!-- Services Section -->
+    <section id="servicios" class="bg-light py-5">
+        <div class="container">
+            <div id="servicesCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="images/fotoGrupal.jpeg" class="d-block w-100" alt="Foto grupal">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/DEFENSA.png" class="d-block w-100" alt="Foto grupal">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/combates.jpeg" class="d-block w-100" alt="Combates">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/DOCENTE.png" class="d-block w-100" alt="Combates">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/EXAMEN.jpeg" class="d-block w-100" alt="Combates">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/EXHIBICION.jpeg" class="d-block w-100" alt="Combates">
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="{{ asset('images/pic2.jpg') }}" alt="Second slide">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Segunda Imagen</h5>
-                        <p>Descripción de la segunda imagen.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="{{ asset('images/pic3.jpg') }}" alt="Third slide">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Tercera Imagen</h5>
-                        <p>Descripción de la tercera imagen.</p>
-                    </div>
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-
-        <div class="card w-100 p-0 5">
-            <div class="card-body">
-                <h5 class="card-title">Encuéntranos aquí</h5>
-            </div>
-            <div class="ratio ratio-1x1">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3601.169893513552!2d-103.4047761261058!3d25.499379877517608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdddface4550b%3A0xf7afbaebe9356650!2sTaekwondo%20Jidokwan%20Julietas!5e0!3m2!1ses-419!2smx!4v1729393877191!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <button class="carousel-control-prev" type="button" data-bs-target="#servicesCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#servicesCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
             </div>
         </div>
-    </div>
+    </section>
 
-
-
-    <footer class="text-center">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-4 d-flex flex-column align-items-center justify-content-center footer-link">
-                    <p>📞 8717976623</p>
-                    <p>📍<a href="https://maps.app.goo.gl/DCgQmxAuw8RjsNTo6" class="footer-link">Querétaro 120, La Merced, 27296 Torreón, Coah.</a></p>
+    <!-- About Section -->
+    <section id="acerca" class="bg-dark py-5 text-white">
+        <div class="container">
+            <h2 id="conocenos">Conócenos</h2>
+            <p class="text-muted">Ofrecemos servicios de calidad para optimizar tu gestión.</p>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <p>Con más de <strong>28 años</strong> formando campeones de vida.</p>
                 </div>
-                <div class="col-4 d-flex align-items-center justify-content-center">
-                    <img src="{{ asset('images/JDKJulietasLogoBlanco.png') }}" alt="" class="footer-logo">
+                <div class="col-md-4">
+                    <p>Nuestra academia está <strong>100% avalada</strong> por la FMTKD.</p>
                 </div>
-                <div class="col-4 d-flex align-items-center justify-content-center footer-contact">
-                    <p><img src="{{ asset('images/facebookIcon.png') }}" alt="" class="imgFace"> <a href="https://www.facebook.com/JidoKwanGymJulietas" class="footer-link">Jido Kwan Gym Julietas</a></p>
+                <div class="col-md-4">
+                    <p>Un espacio seguro donde tus hijos podrán desarrollarse y aprender este arte marcial.</p>
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-5">
+        <div class="container">
+            <h2 class="text-center text-primary mb-4">Encuéntranos aquí</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3601.1698935135487!2d-103.40477612387419!3d25.499379877517715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdddface4550b%3A0xf7afbaebe9356650!2sTaekwondo%20Jidokwan%20Julietas!5e0!3m2!1ses-419!2smx!4v1732630168359!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p> JidoKwan Julietas.</p>
+        <p class="mb-0">
+         Jidokwan Julietas.
+        <a href="https://www.facebook.com/jidokwan.gymjulietas" target="_blank" class="text-white ">
+            Síguenos en Facebook
+        </a>
+        <img src="images/facebookIcon.png" alt="Facebook" width="30" height="30" style+='margin-left: 10px;'>
+    </p>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
