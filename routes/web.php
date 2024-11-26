@@ -10,6 +10,7 @@ use App\Http\Controllers\ExamenController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Models\Role;
 use App\Http\Controllers\AsistenciaController;
+use App\Http\Controllers\UsrController;
 
 
 Route::get('/', function () {
@@ -18,6 +19,17 @@ Route::get('/', function () {
 
 Route::get('/login', [UserController::class, 'getlogin'])->name('login');
 Route::post('/login', [UserController::class, 'authenticate'])->name('login.post');
+
+
+Route::get('/users', function () { return view('Admin/UsersAdmin');});
+Route::get('/users', [UserController::class, 'create'])->name('admin.users.create');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
+
+Route::get('/cau', [UsrController::class, 'createau'])->name('users.c');
+Route::post('/add-user/{id}', [UsrController::class, 'addPersonandUser'])->name('users.add');
+
+
 
 Route::middleware('auth')->group(function () {
     
@@ -29,6 +41,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/clases/{id}', [ClaseController::class, 'show'])->name('admin.clases.show');
         Route::get('/clases/{id}/edit', [ClaseController::class, 'edit'])->name('admin.clases.edit');
         Route::put('/clases/{id}', [ClaseController::class, 'update'])->name('admin.clases.update');
+        
     });
 
     // Rutas para profesor
@@ -93,9 +106,7 @@ Route::middleware('auth')->group(function () {
     });
 
 
-Route::get('/admin/users', function () { return view('Admin/UsersAdmin');});
-Route::get('/admin/users', [UserController::class, 'create'])->name('admin.users.create');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
 
 
 
