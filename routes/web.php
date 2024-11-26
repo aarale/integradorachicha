@@ -19,7 +19,12 @@ Route::get('/', function () {
 Route::get('/login', [UserController::class, 'getlogin'])->name('login');
 Route::post('/login', [UserController::class, 'authenticate'])->name('login.post');
 
+Route::get('/admin/users', function () { return view('Admin/UsersAdmin');});
+Route::get('/admin/users', [UserController::class, 'create'])->name('admin.users.create');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
 Route::middleware('auth')->group(function () {
+
     
     // Rutas para admin
     Route::prefix('admin')->middleware('role:admin')->group(function () {
@@ -92,10 +97,6 @@ Route::middleware('auth')->group(function () {
 
     });
 
-
-Route::get('/admin/users', function () { return view('Admin/UsersAdmin');});
-Route::get('/admin/users', [UserController::class, 'create'])->name('admin.users.create');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
 
 
 
