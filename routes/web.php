@@ -20,18 +20,8 @@ Route::get('/', function () {
 Route::get('/login', [UserController::class, 'getlogin'])->name('login');
 Route::post('/login', [UserController::class, 'authenticate'])->name('login.post');
 
-
-Route::get('/users', function () { return view('Admin/UsersAdmin');});
-Route::get('/users', [UserController::class, 'create'])->name('admin.users.create');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
-
-
-Route::get('/cau', [UsrController::class, 'createau'])->name('users.c');
-Route::post('/add-user/{id}', [UsrController::class, 'addPersonandUser'])->name('users.add');
-
-
-
 Route::middleware('auth')->group(function () {
+
     
     // Rutas para admin
     Route::prefix('admin')->middleware('role:admin')->group(function () {
@@ -106,7 +96,9 @@ Route::middleware('auth')->group(function () {
     });
 
 
-
+Route::get('/admin/users', function () { return view('Admin/UsersAdmin');});
+Route::get('/admin/users', [UserController::class, 'create'])->name('admin.users.create');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
 
 
 
