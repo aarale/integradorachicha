@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         schema::create('ruf', function (Blueprint $table) {
-            $table->int('reference');
+            $table->integer('reference');
             $table->string('schooling');
-            $table->int('postal_code');
+            $table->integer('postal_code');
             $table->string('curp');
             $table->timestamps();
         });

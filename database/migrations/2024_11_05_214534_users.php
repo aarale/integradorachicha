@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id(); // ID único de tipo bigint que se incrementa automáticamente.
-            $table->string('name'); // Nombre del usuario.
-            $table->string('email')->unique(); // Email único para el usuario.
-            $table->timestamp('email_verified_at')->nullable(); // Marca la fecha de verificación de email.
-            $table->string('password'); // Contraseña del usuario.
-            $table->rememberToken(); // Token para "recordar sesión".
-            $table->timestamps(); // Crea columnas created_at y updated_at.
-        });
+        if (!Schema::hasTable('users')) {
+            Schema::create('users', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->string('email')->unique();
+                $table->timestamp('email_verified_at')->nullable();
+                $table->string('password');
+                $table->rememberToken();
+                $table->timestamps();
+            });
+        }
     }
 
     /**

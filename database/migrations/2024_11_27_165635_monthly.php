@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         schema::create('monthly', function (Blueprint $table) {
-            $table->int('reference');
+            $table->id(); 
+
+            $table->integer('reference');
             $table->enum('month', ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
-            $table->int('p_year');;
+            $table->integer('p_year');;
             $table->timestamps();
         });
     }
