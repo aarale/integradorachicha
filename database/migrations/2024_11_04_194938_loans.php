@@ -16,11 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('custom_users');
             $table->foreignId('material_id')->constrained('materials');
             $table->enum('status', ['loaned', 'returned']);
-            $table->int('quantity');
+            $table->integer('quantity');
             $table->date('transaction_date');
             $table->date('devolution_date');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->timestamps();
         });
     }
 

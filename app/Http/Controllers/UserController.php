@@ -51,7 +51,7 @@ class UserController extends Controller
         
         switch ($role) {
             case 'administrator':
-                return redirect()->route('InicioAdmin'); 
+                return redirect()->route('admin.inicioAdmin'); 
             case 'teacher':
                 return redirect()->route('profesores.crearexamen'); 
             case 'student':

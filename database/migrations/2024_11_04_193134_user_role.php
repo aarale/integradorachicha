@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserRoleTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -18,6 +18,6 @@ class CreateUserRoleTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('user_role');
+        Schema::dropIfExists('userroles');
     }
-}
+};

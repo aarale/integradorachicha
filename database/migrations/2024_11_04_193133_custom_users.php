@@ -22,8 +22,7 @@ return new class extends Migration
             $table->timestamp('token_expiration')->nullable();
             $table->timestamp('registration_date')->nullable();
             $table->boolean('active')->default(true);
-            $table->timestamps('cerated_at');
-            $table->timestamps('updated_at');
+            $table->timestamps();
         });
     }
     /**
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('custom_users');
+        Schema::dropIfExists('customusers');
     }
 };
