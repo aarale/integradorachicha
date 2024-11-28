@@ -17,29 +17,28 @@ Route::get('/', function () {
     return view('inicio');
 })->name('inicio');
 
+
+
 Route::get('/login', [UserController::class, 'getlogin'])->name('login');
 Route::post('/login', [UserController::class, 'authenticate'])->name('login.post');
-Route::get('/admin/users', function () { return view('Admin/UsersAdmin');});
-Route::get('/admin/users', [UserController::class, 'create'])->name('admin.users.create');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/iadm', [AdminController::class, 'inicioAdmin'])->name('admin.inicioAdmin');
-    Route::post('/adu', [AdminController::class, 'addusr'])->name('admin.addAdmin');
     
     // Rutas para admin
-        Route::prefix('admin')->middleware('role:admin')->group(function () {
+    Route::prefix('admin')->middleware('role:admin')->group(function () {
         Route::get('/clases', [ClaseController::class, 'index'])->name('admin.clases.index');
         Route::get('/crear/clase', [ClaseController::class, 'create'])->name('admin.clases.create');
         Route::post('/clases', [ClaseController::class, 'store'])->name('admin.clases.store');
         Route::get('/clases/{id}', [ClaseController::class, 'show'])->name('admin.clases.show');
         Route::get('/clases/{id}/edit', [ClaseController::class, 'edit'])->name('admin.clases.edit');
         Route::put('/clases/{id}', [ClaseController::class, 'update'])->name('admin.clases.update');
+
+        
+
         
     });
 
-    // Rutas para profesor
     Route::middleware(['role:teacher'])->get('/profesores', [ProfesorController::class, 'vistaprincipal']); 
         Route::get('/dashboard', [ProfesorController::class, 'index'])->name('profesor.dashboard');
         Route::get('/clases', [ClaseController::class, 'index'])->name('profesor.clases.index');
@@ -51,15 +50,13 @@ Route::middleware('auth')->group(function () {
         Route::post('/clases/asistencia', [AsistenciaController::class, 'store'])->name('asistencia.store');
         Route::get('/consulta/examenes', [ExamenController::class, 'index'])->name('exam.index');
    
-
-    // Rutas para alumno
     Route::middleware(['role:student'])->get('/alumnos', [AlumnoController::class, 'alumno.avisos']);
         Route::get('/progreso', [AlumnoController::class, 'progreso'])->name('alumnos.progreso');
         Route::get('/avisos', [AlumnoController::class, 'avisos'])->name('alumnos.avisos');
         Route::get('/alumno/{id}', [AlumnoController::class, 'show'])->name('alumno.show');
    
 
-});
+
 
 /*
 Route::get('/', function () {
@@ -100,10 +97,6 @@ Route::middleware('auth')->group(function () {
 
     });
 
-
-Route::get('/admin/users', function () { return view('Admin/UsersAdmin');});
-Route::get('/admin/users', [UserController::class, 'create'])->name('admin.users.create');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
 
 
 
@@ -216,10 +209,11 @@ Route::get('/alumno/avisos', [AlumnoController::class, 'avisos'])->name('alumno.
 Route :: get('/alumno/grupos', [AlumnoController:: class , 'grupos']);
 Route :: get('/alumno/finanzas', [AlumnoController:: class , 'finanzas']);
 
-Route::get('/admin/InicioAdmin', [AdminController::class, 'InicioAdmin'])->name('InicioAdmin');
-
 Route::get('/admin/users', function () { return view('Admin/UsersAdmin');});
 Route::get('/admin/users', [UserController::class, 'create'])->name('admin.users.create');
+
+
+
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
 Route::get('/molde',[LayoutController::class,'molde']);
 Route::get('/login/admin', [AdminController::class,'inicioAdmin']);
