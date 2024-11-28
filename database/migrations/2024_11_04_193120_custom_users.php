@@ -22,8 +22,10 @@ return new class extends Migration
             $table->timestamp('token_expiration')->nullable();
             $table->timestamp('registration_date')->nullable();
             $table->boolean('active')->default(true);
-            $table->timestamps('cerated_at');
-            $table->timestamps('updated_at');
+            
+            $table->string('profile_picture', 255)->nullable();
+
+            $table->timestamps();
         });
     }
     /**

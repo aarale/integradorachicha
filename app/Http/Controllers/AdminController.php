@@ -8,7 +8,7 @@ class AdminController extends Controller
 {
     public function inicioAdmin()
     {
-        return view('Admin.InicioAdmin');
+        return view('Prueba');
     }
 
     public function users()
@@ -26,5 +26,8 @@ class AdminController extends Controller
     public function addAlumno()
     {
         return view('Admin/UserAlumno');
+    }
+    public function addusr(){
+        return view('Admin.InicioAdmin');
     }
 }

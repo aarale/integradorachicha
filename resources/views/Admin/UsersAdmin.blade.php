@@ -6,53 +6,117 @@
             <div class="card-header text-white" style="background-color: #143d7c;">
                 <h2>Registra un nuevo usuario</h2>
             </div>
-            <div class="card-body">
-                <form id="userForm" action="{{ route('users.store') }}" method="POST">
-                    @csrf
-                    <div class="mb-3">
-                        <label class="form-label" for="input-name">Nombre y apellidos:</label>
-                        <div class="input-group">
-                            <input type="text" name="first_name" aria-label="First name" class="form-control" placeholder="Nombre">
-                            <input type="text" name="last_name" aria-label="Last name" class="form-control" placeholder="Apellidos">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="input-age">Fecha de Nacimiento:</label>
-                        <input type="date" name="birth_date" id="input-age" class="form-control bg-gray-700 text-gray-200 border-0 rounded-md p-2">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="input-address">Dirección:</label>
-                        <input type="text" name="address" id="input-address" class="form-control" placeholder="Dirección">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="input-phone">Teléfono:</label>
-                        <input type="text" name="phone" id="input-phone" class="form-control" placeholder="Teléfono">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="input-username">Nombre de usuario:</label>
-                        <input type="text" name="username" id="input-username" class="form-control" placeholder="Nombre de usuario">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="input-password">Contraseña:</label>
-                        <input type="password" name="password" id="input-password" class="form-control" placeholder="Contraseña">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="input-email">Correo electrónico:</label>
-                        <input type="email" name="email" id="input-email" class="form-control" placeholder="Correo electrónico">
-                    </div>
-                    <div class="mb-3">
-                        <label for="role_id">Rol</label>
-                        <select name="role_id" class="form-control">
-                            @foreach($roles as $role)
-                                <option value="{{ $role->id }}" {{ isset($user) && $user->role_id == $role->id ? 'selected' : '' }}>
-                                    {{ $role->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="background-color: #b20505">Enviar</button>
-                </form>
+
+
+        <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+
+            <fieldset>
+                <legend>Información Personal</legend>
+                <div class="mb-3">
+                    <label for="first_name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" value="{{ old('first_name') }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="last_name" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" value="{{ old('last_name') }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="birth_date" class="form-label">Fecha de Nacimiento</label>
+                    <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ old('birth_date') }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Nombre de Usuario</label>
+                    <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="role_id" class="form-label">Rol</label>
+                    <select class="form-select" id="role_id" name="role_id" required>
+                        <option value="" disabled {{ old('role_id') ? '' : 'selected' }}>Seleccione un rol</option>
+                        <option value="1" {{ old('role_id') == 1 ? 'selected' : '' }}>Administrador</option>
+                        <option value="2" {{ old('role_id') == 2 ? 'selected' : '' }}>Docente</option>
+                        <option value="3" {{ old('role_id') == 3 ? 'selected' : '' }}>Estudiante</option>
+                    </select>
+                </div>
+                
+            </fieldset>
+
+            <fieldset id="emergency_contact" style="display:none;">
+                <legend>Contacto de Emergencia</legend>
+                <div class="mb-3">
+                    <label for="emergency_contact_first_name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="emergency_contact_first_name" name="emergency_contact_first_name" value="{{ old('emergency_contact_first_name') }}">
+                </div>
+                <div class="mb-3">
+                    <label for="emergency_contact_last_name" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="emergency_contact_last_name" name="emergency_contact_last_name" value="{{ old('emergency_contact_last_name') }}">
+                </div>
+                <div class="mb-3">
+                    <label for="emergency_contact_address" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="emergency_contact_address" name="emergency_contact_address" value="{{ old('emergency_contact_address') }}">
+                </div>
+                <div class="mb-3">
+                    <label for="emergency_contact_phone" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" id="emergency_contact_phone" name="emergency_contact_phone" value="{{ old('emergency_contact_phone') }}">
+                </div>
+                <div class="mb-3">
+                    <label for="emergency_contact_relationship" class="form-label">Relación</label>
+                    <input type="text" class="form-control" id="emergency_contact_relationship" name="emergency_contact_relationship" value="{{ old('emergency_contact_relationship') }}">
+                </div>
+            </fieldset>
+
+            <div id="teacher_fields" style="display:none;">
+                <div class="mb-3">
+                    <label for="rfc" class="form-label">RFC (solo para docentes)</label>
+                    <input type="text" class="form-control" id="rfc" name="rfc" value="{{ old('rfc') }}">
+                </div>
             </div>
-        </div>
+
+            <div id="student_fields" style="display:none;">
+                <div class="mb-3">
+                    <label for="belt_id" class="form-label">Cinturón (solo para estudiantes)</label>
+                    <input type="number" class="form-control" id="belt_id" name="belt_id" value="{{ old('belt_id') }}">
+                </div>
+            </div>
+            
+
+            <button type="submit" class="btn btn-outline-primary">Enviar</button>
+        </form>
     </div>
+
+    <script>
+        document.getElementById('role_id').addEventListener('change', function() {
+    const emergencyContactFieldset = document.getElementById('emergency_contact');
+    const teacherFields = document.getElementById('teacher_fields');
+    const studentFields = document.getElementById('student_fields');
+
+    emergencyContactFieldset.style.display = 'none';
+    teacherFields.style.display = 'none';
+    studentFields.style.display = 'none';
+
+    if (this.value == '3') { 
+        emergencyContactFieldset.style.display = 'block';
+        studentFields.style.display = 'block';
+    } else if (this.value == '2') { 
+        teacherFields.style.display = 'block';
+    }
+});
+
+    </script>
 @endsection

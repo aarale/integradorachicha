@@ -22,7 +22,7 @@
         @endif
 
         <!-- Formulario -->
-        <form action="{{ route('users.add', ['id' => $person->id]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('users.store', ['id' => $person->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <fieldset>

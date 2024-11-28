@@ -47,10 +47,9 @@ class UsrController extends Controller
 
 public function addPersonandUser(CreateUserRequest $request)
 {
-    // Capturar datos comunes
-    $u_role_id = $request->role_id; // Capturar el rol seleccionado
+    $u_role_id = $request->role_id; 
     $u_username = $request->username;
-    $u_password = Hash::make($request->password); // Encripta la contraseña
+    $u_password = Hash::make($request->password); 
     $u_email = $request->email;
     $u_profile_picture = $request->file('profile_picture')->store('profile_pictures', 'public');
 
