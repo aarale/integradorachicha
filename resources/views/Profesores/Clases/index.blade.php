@@ -47,8 +47,13 @@
                         <tbody>
                             @forelse($class->students as $student)
                                 <tr>
-                                    <td>{{ $student->person->first_name }} {{ $student->person->last_name }}</td>
-                                    <td>{{ $student->studentBelt ? $student->studentBelt->belt->name : 'N/A' }}</td>
+                                    <td>@foreach ($class->students as $student)
+                                        @if ($student->person)
+                                            <a href="{{ route('alumno.show', $student->id) }}">{{ $student->person->first_name }} {{ $student->person->last_name }}</a>
+                                        @endif
+                                    @endforeach
+                                </td>
+                                    <td>{{ $student->studentBelt ? $student->studentBelt->belt->name : 'Sin cinta asignada' }}</td>
                                     <td>{{ \Carbon\Carbon::parse($student->person->birth_date)->age }}</td>
                                 </tr>
                             @empty

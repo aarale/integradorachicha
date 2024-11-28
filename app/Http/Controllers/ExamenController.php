@@ -60,7 +60,7 @@ class ExamenController extends Controller
         'description' => $request->description,
     ]);
     
-        return redirect()->route('profesores.crearexamen')->with('success', 'Examen creado exitosamente.');
+        return redirect()->route('Profesores.CrearExamen')->with('success', 'Examen creado exitosamente.');
     }
 
    
