@@ -134,7 +134,6 @@ class UserController extends Controller
         return redirect()->route('admin.users.create')->with('success', 'Usuario creado exitosamente');
     }*/
 
-    
     public function store(Request $request)
 {
     $validatedData = $request->validate([
@@ -153,7 +152,8 @@ class UserController extends Controller
         'emergency_contact_phone' => 'required_if:role_id,3',
         'emergency_contact_relationship' => 'required_if:role_id,3',
         'rfc' => 'required_if:role_id,2',
-        'belt_id' => 'required_if:role_id,3|exists:belts,id',
+        //'belt_id' => 'required_if:role_id,3|exists:belts,id',
+        'belt_id' => 'nullable|exists:belts,id',
         'profile_picture' => 'nullable|image|max:2048',
     ]);
 
@@ -162,6 +162,8 @@ class UserController extends Controller
         if ($request->hasFile('profile_picture')) {
             $profilePicture = file_get_contents($request->file('profile_picture')->getRealPath());
         }
+
+        $beltId = $validatedData['role_id'] == 3 ? $validatedData['belt_id'] : null;
 
         DB::statement('CALL InsertUser(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
             $validatedData['first_name'],
@@ -179,17 +181,13 @@ class UserController extends Controller
             $validatedData['emergency_contact_phone'] ?? null,          
             $validatedData['emergency_contact_relationship'] ?? null,   
             $validatedData['rfc'] ?? null,                              
-            $validatedData['belt_id'] ?? null,                          
+            $beltId, 
             $profilePicture,                                           
         ]);
-        
-        
-        
 
         return redirect()->route('admin.users.create')->with('success', 'Usuario creado exitosamente');
     } catch (\Exception $e) {
         return back()->withErrors(['error' => 'Error al crear el usuario: ' . $e->getMessage()]);
     }
 }
-
 }

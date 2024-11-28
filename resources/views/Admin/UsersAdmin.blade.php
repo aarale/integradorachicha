@@ -10,7 +10,6 @@
     <div class="container mt-5">
         <h2>Registro de Usuario</h2>
 
-        <!-- Mostrar mensajes de error -->
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -21,7 +20,6 @@
             </div>
         @endif
 
-        <!-- Formulario -->
         <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -108,6 +106,7 @@
                     <input type="number" class="form-control" id="belt_id" name="belt_id" value="{{ old('belt_id') }}">
                 </div>
             </div>
+            
 
             <button type="submit" class="btn btn-outline-primary">Enviar</button>
         </form>
@@ -115,21 +114,22 @@
 
     <script>
         document.getElementById('role_id').addEventListener('change', function() {
-            const emergencyContactFieldset = document.getElementById('emergency_contact');
-            const teacherFields = document.getElementById('teacher_fields');
-            const studentFields = document.getElementById('student_fields');
+    const emergencyContactFieldset = document.getElementById('emergency_contact');
+    const teacherFields = document.getElementById('teacher_fields');
+    const studentFields = document.getElementById('student_fields');
 
-            emergencyContactFieldset.style.display = 'none';
-            teacherFields.style.display = 'none';
-            studentFields.style.display = 'none';
+    emergencyContactFieldset.style.display = 'none';
+    teacherFields.style.display = 'none';
+    studentFields.style.display = 'none';
 
-            if (this.value == '3') {
-                emergencyContactFieldset.style.display = 'block';
-                studentFields.style.display = 'block';
-            } else if (this.value == '2') {
-                teacherFields.style.display = 'block';
-            }
-        });
+    if (this.value == '3') { 
+        emergencyContactFieldset.style.display = 'block';
+        studentFields.style.display = 'block';
+    } else if (this.value == '2') { 
+        teacherFields.style.display = 'block';
+    }
+});
+
     </script>
 </body>
 </html>
