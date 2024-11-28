@@ -14,9 +14,14 @@ class ExamenController extends Controller
     {
         
         $exams = Exam::all();
-        return view('Profesor.Crear_Examen', compact('exams'));
+        return view('Profesores.CrearExamen', compact('exams'));
     }
 
+    public function consultarExamenes(){
+        $exams = Exam::all();
+
+        return view('Profesores.ConsultaExamenes', compact('exams'));
+    }
 /*
     public function store(Request $request)
 {
