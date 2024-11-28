@@ -20,14 +20,24 @@ Route::get('/', function () {
 Route::get('/login', [UserController::class, 'getlogin'])->name('login');
 Route::post('/login', [UserController::class, 'authenticate'])->name('login.post');
 
+
+
+Route::get('/admin/users', function () { return view('Admin/UsersAdmin');});
+Route::get('/admin/users', [UserController::class, 'create'])->name('admin.users.create');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
+
+Route::get('/clases', [ClaseController::class, 'index'])->name('admin.clases.index');
+
+
+
 Route::middleware('auth')->group(function () {
 
     
     // Rutas para admin
     Route::prefix('admin')->middleware('role:admin')->group(function () {
-        Route::get('/clases', [ClaseController::class, 'index'])->name('admin.clases.index');
-        Route::get('/crear/clase', [ClaseController::class, 'create'])->name('admin.clases.create');
-        Route::post('/clases', [ClaseController::class, 'store'])->name('admin.clases.store');
+        Route::get('/crear/clase', [ClaseController::class, 'create'])->name('admin.clases.index');
+        // Route::post('/clases', [ClaseController::class, 'store'])->name('admin.clases.store');
         Route::get('/clases/{id}', [ClaseController::class, 'show'])->name('admin.clases.show');
         Route::get('/clases/{id}/edit', [ClaseController::class, 'edit'])->name('admin.clases.edit');
         Route::put('/clases/{id}', [ClaseController::class, 'update'])->name('admin.clases.update');
@@ -37,12 +47,13 @@ Route::middleware('auth')->group(function () {
     // Rutas para profesor
     Route::middleware(['role:teacher'])->get('/profesores', [ProfesorController::class, 'vistaprincipal']); 
         Route::get('/dashboard', [ProfesorController::class, 'index'])->name('profesor.dashboard');
-        Route::get('/clases', [ClaseController::class, 'index'])->name('profesor.clases.index');
+        Route::get('/clases', [ClaseController::class, 'index'])->name('Profesores.Clases.index');
         Route::get('/crearexamen', [ProfesorController::class, 'crearExamen'])->name('profesores.crearexamen');
         Route::post('/crear/examen', [ExamenController::class, 'store'])->name('examen.store');
-        Route::get('/clases/asistencia', [AsistenciaController::class, 'index'])->name('asistencia.index');
-        Route::get('/clases/asistencia', function () {return view('profesores.clases.asistencia'); 
-        })->name('profesor.clases.asistencia');
+        // Route::get('/clases/asistencia', function () {return view('profesores.clases.asistencia'); 
+        // })->name('profesor.clases.asistencia');
+        Route::get('/asistencia', [AsistenciaController::class, 'index'])->name('Profesores.asistencia');
+       // Route::get('/clases/asistencia', [AsistenciaController::class, 'index'])->name('asistencia.index');
         Route::post('/clases/asistencia', [AsistenciaController::class, 'store'])->name('asistencia.store');
         Route::get('/consulta/examenes', [ExamenController::class, 'index'])->name('exam.index');
    

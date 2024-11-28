@@ -13,7 +13,7 @@ class AsistenciaController extends Controller
     public function index()
     {
         $attendances = Attendance::all(); 
-        return view('profesores.clases.asistencia', compact('attendances'));
+        return view('Profesores.asistencia', compact('attendances'));
     }
 
     public function store(Request $request)
@@ -22,4 +22,5 @@ class AsistenciaController extends Controller
         }
         return redirect()->route('asistencia.index')->with('success', 'Asistencia registrada correctamente');
     }
+
 }

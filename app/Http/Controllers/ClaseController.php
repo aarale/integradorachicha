@@ -8,6 +8,8 @@ use App\Models\Role;
 
 class ClaseController extends Controller
 {
+
+
     public function index()
 {
     $user = auth()->user();
@@ -22,9 +24,10 @@ class ClaseController extends Controller
         $class->students = $class->students()->get(); 
     }
 
-    return view('profesores.clases.index', compact('classes'));
+    return view('Profesores.Clases.index', compact('classes'));
 }
-  
+
+
 public function create()
 {
     $teachers = Teacher::with('person')->get(); 
@@ -93,5 +96,12 @@ public function store(Request $request)
 
     return back()->with('success', 'Estudiantes agregados correctamente.');
 }
+
+public function testRedirect()
+{
+    return redirect()->route('Profesores.Clases.index');
+}
+
+
 
 }

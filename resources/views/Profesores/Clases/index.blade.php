@@ -1,67 +1,62 @@
-@extends('layouts.app')
+@extends('layouts.MoldeTeachers')
 
 @section('title', 'Mis Clases')
 
 @section('content')
-<h1>Mis Clases</h1>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Clase</th>
-            <th>Capacidad</th>
-            <th>Día</th>
-            <th>Hora Inicio</th>
-            <th>Hora Fin</th>
-            <th>Acciones
+<h1 class="text-center mb-4">Mis Clases</h1>
 
-                
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($classes as $class)
-        <tr>
-            <td>{{ $class->name }}</td>
-            <td>{{ $class->capacity }}</td>
-            <td>{{ $class->schedule_day }}</td>
-            <td>{{ $class->schedule_start }}</td>
-            <td>{{ $class->schedule_end }}</td>
-            <td>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#studentsModal{{ $class->id }}">
-                    Ver Estudiantes
-                </button>
-            </td>
-        </tr>
-        <div class="modal fade" id="studentsModal{{ $class->id }}" tabindex="-1" role="dialog" aria-labelledby="studentsModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="studentsModalLabel">Estudiantes de la clase {{ $class->name }}</h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <ul>
-                            @foreach ($class->students as $student)
-                                @if ($student->person)
-                                    <li><a href="{{ route('alumno.show', $student->id) }}">{{ $student->person->first_name }} {{ $student->person->last_name }}</a></li>
-                                @else
-                                    <li>Estudiante sin información de persona</li>
-                                @endif
-                            @endforeach
-                        </ul>
-                        
-                    </div>
-                </div>
-            </div>
+<div class="accordion" id="accordionPanelsStayOpenExample">
+  <div class="accordion-item">
+    <div class="table-responsive">
+      <table class="table table-bordered w-100">
+        <thead class="table-dark">
+            <tr>
+                <th>Clase</th>
+                <th>Día</th>
+                <th>Hora Inicio</th>
+                <th>Hora Fin</th>
+            </tr>
+        </thead>
+      </table>
+    </div>
+    
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        <!-- Fila de la tabla dentro del acordeón -->
+        <div class="table-responsive w-100">
+          <table class="table table-bordered w-100">
+            <tbody>
+                <tr>
+                    <td>Clase 7-9</td>
+                    <td>Jueves</td>
+                    <td>7:00</td>
+                    <td>9:00</td>
+                </tr>
+            </tbody>
+          </table>
         </div>
-        
-        
-        @endforeach
-    </tbody>
-
-
-</table>
-
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+      <div class="accordion-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Alumno</th>
+                    <th>Cintas</th>
+                    <th>Edad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Alejandro Ortiz</td>
+                    <td>Negra</td>
+                    <td>23</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

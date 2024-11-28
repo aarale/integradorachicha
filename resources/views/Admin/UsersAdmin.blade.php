@@ -1,4 +1,4 @@
-@extends('layouts.Molde')
+@extends('layouts.MoldeAdmin')
 @section('title', 'Users')
 @section('content')
     <div class="inner-container">
