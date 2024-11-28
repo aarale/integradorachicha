@@ -29,6 +29,17 @@ Route::get('/admin/users', function () { return view('Admin/UsersAdmin');});
 Route::get('/admin/users', [UserController::class, 'create'])->name('admin.users.create');
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
 
+
+
+Route::get('/admin/users', function () { return view('Admin/UsersAdmin');});
+Route::get('/admin/users', [UserController::class, 'create'])->name('admin.users.create');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
+
+Route::get('/clases', [ClaseController::class, 'index'])->name('admin.clases.index');
+
+
+
 Route::middleware('auth')->group(function () {
 
     Route::middleware(['role:admin'])->get('/admin', [AdminController::class, 'Admin.InicioAdmin']); 
@@ -47,12 +58,13 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware(['role:teacher'])->get('/profesores', [ProfesorController::class, 'vistaprincipal']); 
         Route::get('/dashboard', [ProfesorController::class, 'index'])->name('profesor.dashboard');
-        Route::get('/clases', [ClaseController::class, 'index'])->name('profesor.clases.index');
+        Route::get('/clases', [ClaseController::class, 'index'])->name('Profesores.Clases.index');
         Route::get('/crearexamen', [ProfesorController::class, 'crearExamen'])->name('profesores.crearexamen');
         Route::post('/crear/examen', [ExamenController::class, 'store'])->name('examen.store');
-        Route::get('/clases/asistencia', [AsistenciaController::class, 'index'])->name('asistencia.index');
-        Route::get('/clases/asistencia', function () {return view('profesores.clases.asistencia'); 
-        })->name('profesor.clases.asistencia');
+        // Route::get('/clases/asistencia', function () {return view('profesores.clases.asistencia'); 
+        // })->name('profesor.clases.asistencia');
+        Route::get('/asistencia', [AsistenciaController::class, 'index'])->name('Profesores.asistencia');
+       // Route::get('/clases/asistencia', [AsistenciaController::class, 'index'])->name('asistencia.index');
         Route::post('/clases/asistencia', [AsistenciaController::class, 'store'])->name('asistencia.store');
         Route::get('/consulta/examenes', [ExamenController::class, 'index'])->name('exam.index');
    

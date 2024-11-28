@@ -1,4 +1,4 @@
-    @extends('layouts.Molde')
+    @extends('layouts.MoldeTeachers')
     @section('title', 'Crear nuevo Examen')
     @section('content')
 

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomClass extends Model
 {
-    protected $table = 'customclasses';
+    protected $table = 'classes';
     protected $primaryKey = 'id';
     protected $fillable = [
         'teacher_id',

@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Usuario</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <h2>Registro de Usuario</h2>
-
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+@extends('layouts.MoldeAdmin')
+@section('title', 'Users')
+@section('content')
+    <div class="inner-container">
+        <div class="card my-4">
+            <div class="card-header text-white" style="background-color: #143d7c;">
+                <h2>Registra un nuevo usuario</h2>
             </div>
         @endif
 
