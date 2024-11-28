@@ -5,6 +5,10 @@ use Illuminate\Http\Request;
 use App\Models\CustomClass;
 use App\Models\Student;
 use App\Models\Role; 
+use App\Models\Teacher; 
+use App\Models\StudentBelt;
+use App\Models\CustomUser;
+use Illuminate\Support\Facades\Auth;
 
 class ClaseController extends Controller
 {
@@ -17,9 +21,10 @@ class ClaseController extends Controller
     if (!$user->teacher) {
         return redirect()->route('home')->with('error', 'No tienes clases asignadas.');
     }
-
+    
     $classes = CustomClass::where('teacher_id', $user->teacher->id)->get();
-
+    
+    
     foreach ($classes as $class) {
         $class->students = $class->students()->get(); 
     }
@@ -105,3 +110,5 @@ public function testRedirect()
 
 
 }
+
+

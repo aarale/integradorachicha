@@ -49,7 +49,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Alejandro Ortiz</td>
+                    <td>Alejandro Ortiz</td>    
                     <td>Negra</td>
                     <td>23</td>
                 </tr>
