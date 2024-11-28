@@ -17,16 +17,22 @@ Route::get('/', function () {
     return view('inicio');
 })->name('inicio');
 
-
+    
 
 Route::get('/login', [UserController::class, 'getlogin'])->name('login');
 Route::post('/login', [UserController::class, 'authenticate'])->name('login.post');
+Route::get('/admin/users', function () { return view('Admin/UsersAdmin');});
+Route::get('/admin/users', [UserController::class, 'create'])->name('admin.users.create');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
+Route::get('/admin/users', function () { return view('Admin/UsersAdmin');});
+Route::get('/admin/users', [UserController::class, 'create'])->name('admin.users.create');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
 
 Route::middleware('auth')->group(function () {
 
-    
-    // Rutas para admin
-    Route::prefix('admin')->middleware('role:admin')->group(function () {
+    Route::middleware(['role:admin'])->get('/admin', [AdminController::class, 'Admin.InicioAdmin']); 
+    Route::get('/InicioAdmin', [AdminController::class, 'InicioAdmin'])->name('InicioAdmin');
         Route::get('/clases', [ClaseController::class, 'index'])->name('admin.clases.index');
         Route::get('/crear/clase', [ClaseController::class, 'create'])->name('admin.clases.create');
         Route::post('/clases', [ClaseController::class, 'store'])->name('admin.clases.store');

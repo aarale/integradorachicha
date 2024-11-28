@@ -64,6 +64,8 @@ class UserController extends Controller
         'username' => 'Las credenciales no coinciden.',
     ]);
 }
+
+    
 /*
 
     public function store(Request $request)
@@ -161,27 +163,28 @@ class UserController extends Controller
             $profilePicture = file_get_contents($request->file('profile_picture')->getRealPath());
         }
 
-        DB::statement('CALL InsertUser(
-            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
-        )', [
+        DB::statement('CALL InsertUser(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
             $validatedData['first_name'],
             $validatedData['last_name'],
             $validatedData['birth_date'],
             $validatedData['address'],
             $validatedData['phone'],
             $validatedData['username'],
-            Hash::make($validatedData['password']), 
+            Hash::make($validatedData['password']),
             $validatedData['email'],
             $validatedData['role_id'],
-            $validatedData['emergency_contact_first_name'] ?? null,
-            $validatedData['emergency_contact_last_name'] ?? null,
-            $validatedData['emergency_contact_address'] ?? null,
-            $validatedData['emergency_contact_phone'] ?? null,
-            $validatedData['emergency_contact_relationship'] ?? null,
-            $validatedData['rfc'] ?? null,
-            $validatedData['belt_id'] ?? null,
-            $profilePicture,
+            $validatedData['emergency_contact_first_name'] ?? null,     
+            $validatedData['emergency_contact_last_name'] ?? null,      
+            $validatedData['emergency_contact_address'] ?? null,        
+            $validatedData['emergency_contact_phone'] ?? null,          
+            $validatedData['emergency_contact_relationship'] ?? null,   
+            $validatedData['rfc'] ?? null,                              
+            $validatedData['belt_id'] ?? null,                          
+            $profilePicture,                                           
         ]);
+        
+        
+        
 
         return redirect()->route('admin.users.create')->with('success', 'Usuario creado exitosamente');
     } catch (\Exception $e) {
