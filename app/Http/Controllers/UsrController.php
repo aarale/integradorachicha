@@ -34,7 +34,7 @@ class UsrController extends Controller
             case 'administrator':
                 return redirect()->route('InicioAdmin'); 
             case 'teacher':
-                return redirect()->route('profesores.crearexamen'); 
+                return redirect()->route('Profesores.CrearExamen'); 
             case 'student':
                 return redirect()->route('alumno.avisos'); 
         }

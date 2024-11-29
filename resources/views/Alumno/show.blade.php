@@ -9,6 +9,6 @@
         @if($student->role)
         <p>Rol: {{ $student->role->name }}</p>
     @endif
-        <a href="{{ route('profesor.clases.index') }}" class="btn btn-secondary">Regresar a mis clases</a>
+        <a href="{{ route('Profesores.Clases.index') }}" class="btn btn-secondary">Regresar a mis clases</a>
     </div>
 @endsection

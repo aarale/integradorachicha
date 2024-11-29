@@ -5,7 +5,7 @@
     <div class="background-div">
         <div class="inner-container">
         <div class="card my-4" >
-        <div class="card-header text-white " style='background-color: #143d7c'>
+        <div class="card-header text-black " >
             <h2>Crear Nuevo Examen</h2>
         </div>
         <div class="card-body">
@@ -40,7 +40,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary" style='background-color: #b20505'>Crear Examen</button>
-                <a href="/consulta/examenes" class="btn btn-secondary">Ver Examenes</a>
+                <a href="{{ route('Profesores.ConsultaExamenes') }}" class="btn btn-secondary">Ver Examenes</a>
             </form>
         </div>
     </div>

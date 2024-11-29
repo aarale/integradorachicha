@@ -19,16 +19,16 @@
         }
 
         .sidebar-nav {
-            position: fixed; /* Sidebar fijo */
+            position: fixed;
             top: 0;
             left: 0;
             background-color: #ebebeb;
             border-right: 1px solid #e0e0e0;
             padding-top: 40px;
             width: 220px;
-            height: 100vh; /* Altura completa de la ventana */
+            height: 100vh;
             overflow-y: auto;
-            z-index: 1000; /* Asegura prioridad sobre otros elementos */
+            z-index: 1000;
         }
 
         .sidebar-nav .nav-link {
@@ -45,20 +45,10 @@
             transform: scale(1.1);
         }
 
-        .sidebar-nav .navbar-brand {
-            display: flex;
-            justify-content: center;
-        }
-
         #img-logoNav {
             width: 170px;
             height: auto;
             margin-bottom: 70px;
-        }
-
-        #img-logoNavMobile {
-            width: 100px;
-            height: auto;
         }
 
         .content {
@@ -67,13 +57,11 @@
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-left: 220px; /* Separación del sidebar */
+            margin-left: 220px;
         }
 
         .header {
-            background-color: #bad7e6;
             padding: 10px 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             margin-bottom: 20px;
             position: relative;
@@ -102,12 +90,22 @@
             margin-top: 20px;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
+        .navbar-toggler {
+            border: none; /* Quitar bordes del toggler */
+            background-color: transparent; /* Fondo transparente */
         }
 
-        /* Ajustes responsivos */
+        .navbar-toggler-icon {
+            display: none; /* Ocultar las líneas del toggler */
+        }
+
+        #profileButton {
+            border: none; /* Sin borde */
+            background: transparent; /* Fondo transparente */
+            box-shadow: none; /* Sin sombras */
+            padding: 0; /* Ajusta el relleno */
+        }
+
         @media (max-width: 768px) {
             .sidebar-nav {
                 position: static;
@@ -118,10 +116,6 @@
             }
             .content {
                 margin-left: 0;
-            }
-            .mobile-nav .nav-link {
-                padding: 10px 15px;
-                font-size: 1rem;
             }
             .profile-dropdown {
                 width: 100%;
@@ -135,49 +129,40 @@
 </head>
 <body>
 
-<!-- Nav móvil para pantallas pequeñas -->
 <nav class="navbar navbar-expand-md navbar-light mobile-nav d-md-none">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><img src="{{ asset('images/JDKJulietasLogoNegro.png') }}" alt="Logo" id="img-logoNavMobile"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar" aria-expanded="false" aria-label="Toggle navigation"></button>
         <div class="collapse navbar-collapse" id="mobileSidebar">
             <nav class="nav flex-column">
                 <a class="nav-link" href="{{ route('Profesores.Clases.index')}}">Clases</a>
-                <a class="nav-link" href="#inicio">Avisos</a>
-                <a class="nav-link" href="#importante">Usuarios</a>
+                <a class="nav-link" href="{{ route('Profesor.ConsultarAvisos') }}">Ver avisos</a>
                 <a class="nav-link" href="{{ route('Profesores.asistencia')}}">Asistencias</a>
-                <a class="nav-link" href="#borradores">Exámenes</a>
-                <a class="nav-link" href="#alumnos">Alumnos</a>
+                <a class="nav-link" href="{{ route('Profesores.CrearExamen')}}">Exámenes</a>
             </nav>
         </div>
     </div>
 </nav>
 
 <div class="main-container">
-    <!-- Sidebar nav para pantallas grandes -->
     <div class="sidebar-nav d-none d-md-block">
         <a class="navbar-brand" href="#"><img src="{{ asset('images/JDKJulietasLogoNegro.png') }}" alt="Logo" id="img-logoNav"></a>
         <nav class="nav flex-column">
-            <a class="nav-link" href="#inicio">Avisos</a>
-            <a class="nav-link" href="#importante">Usuarios</a>
+        <a class="nav-link" href="{{ route('Profesor.ConsultarAvisos') }}">Ver avisos</a>
             <a class="nav-link" href="{{ route('Profesores.asistencia')}}">Asistencias</a>
-            <a class="nav-link" href="#borradores">Exámenes</a>
+            <a class="nav-link" href="{{ route('Profesores.CrearExamen') }}">Exámenes</a>
             <a class="nav-link" href="{{ route('Profesores.Clases.index') }}">Clases</a>
-            <a class="nav-link" href="#alumnos">Alumnos</a><a class="nav-link" href="#enviados">Finanzas</a>
         </nav>
     </div>
 
-    <!-- Main Content -->
     <div class="content container-fluid">
-        <!-- Header -->
         <header class="header d-flex align-items-center">
             <h1 class="h5 mb-0"></h1>
-            <button id="profileButton" class="btn btn-outline-secondary ms-auto" style="background-color: #f77070; color: #373737;">Perfil</button>
+            <button id="profileButton" class="ms-auto">
+                <img src="https://via.placeholder.com/50" alt="Foto de perfil" class="rounded-circle mb-2">
+            </button>
         </header>
 
-        <!-- Profile Dropdown -->
         <div class="profile-dropdown" id="profileDropdown">
             <img src="https://via.placeholder.com/50" alt="Foto de perfil" class="rounded-circle mb-2">
             <p class="fw-bold mb-1">Usuario</p>
@@ -188,43 +173,32 @@
             @yield('content')
         </section>
 
-        <!-- Footer -->
-        <footer class="footer mt-4">
+        <footer class="footer">
             <p>&copy; 2024 Jidokwan Gym Julietas</p>
         </footer>
     </div>
 </div>
 
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- JavaScript para el dropdown del perfil -->
 <script>
-    document.getElementById('profileButton').addEventListener('click', function() {
-        var dropdown = document.getElementById('profileDropdown');
-        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-    });
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const navLinks = document.querySelectorAll('.nav-link');
-    const header = document.querySelector('.header h1'); // Selección del encabezado
- // Selección de enlaces de navegación
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdown = document.getElementById('profileDropdown');
+        const profileButton = document.getElementById('profileButton');
 
-    // Escucha clics en los enlaces del menú
-    navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-            // Actualizar el texto del encabezado
-            /*header.textContent = this.textContent;*/
+        profileButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
 
-            // Eliminar la clase "active" de todos los enlaces y añadirla al seleccionado
-            navLinks.forEach(nav => nav.classList.remove('active'));
-            this.classList.add('active');
+        document.addEventListener('click', function() {
+            dropdown.style.display = 'none';
+        });
+
+        dropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
         });
     });
-});
-
-
 </script>
 
 </body>

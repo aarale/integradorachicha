@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Belt extends Model
 {
-    protected $table = 'belt';
+    protected $table = 'belts';
     protected $primaryKey = 'id';
     public $fillable = ['id','name','color','created_at', 'updated_at'];
 

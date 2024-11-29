@@ -6,10 +6,7 @@ use App\Models\CustomClass;
 use App\Models\Student;
 use App\Models\Role; 
 use App\Models\Teacher; 
-use App\Models\StudentBelt;
-use App\Models\CustomUser;
-use Illuminate\Support\Facades\Auth;
-
+use App\Models\StudentBelt; 
 class ClaseController extends Controller
 {
 
