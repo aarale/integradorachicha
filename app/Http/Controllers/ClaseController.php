@@ -3,8 +3,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CustomClass;
-use App\Models\Student;
-use App\Models\Role; 
+use App\Models\Teacher;
+use App\Models\CustomUser;
 
 class ClaseController extends Controller
 {

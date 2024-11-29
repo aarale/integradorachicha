@@ -1,9 +1,9 @@
 @extends('layouts.MoldeTeachers')
 
-@section('title', 'Asistencia')
+@section('title', 'Tomar Asistencia')
 
 @section('content')
-<!-- Estilo directo en la vista -->
+
 <style>
     .table th, .table td {
         text-align: center;
@@ -56,17 +56,20 @@
                     <table class="table table-striped table-bordered">
                         <thead class="table-dark">
                             <tr>
-                                <th>Estudiante</th>
-                                <th>Fecha</th>
+                                <th>Alumno</th>
                                 <th>Asistencia</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($attendances as $attendance)
+                            @foreach ($studentsAttendance as $attendance)
                                 <tr>
                                     <td>{{ $attendance->first_name }} {{ $attendance->last_name }}</td>
-                                    <td>{{ $date }}</td>
-                                    <td>{{ $attendance->attendance }}</td>
+                                    <td>
+                                        <input type="checkbox" 
+                                               class="form-check-input" 
+                                               {{ $attendance->attendance_status ? 'checked' : '' }} 
+                                               enabled>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

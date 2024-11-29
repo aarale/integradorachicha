@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained('students');
             $table->foreignId('class_id')->constrained('classes');
-            $table->enum('status', ['Active', 'Inactive']);
+            $table->integer('status');
             $table->timestamps();
         });
     }

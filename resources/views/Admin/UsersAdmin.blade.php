@@ -2,11 +2,10 @@
 @section('title', 'Users')
 @section('content')
     <div class="inner-container">
-        <div class="card my-4">
+        <div class="card ml-0 mr-5">
             <div class="card-header text-white" style="background-color: #143d7c;">
                 <h2>Registra un nuevo usuario</h2>
             </div>
-        @endif
 
         <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
             @csrf

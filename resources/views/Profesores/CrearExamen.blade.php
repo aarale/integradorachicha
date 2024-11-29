@@ -31,7 +31,7 @@
 
                 <div class="mb-3">
                     <label for="horaInicio" class="form-label">Duracion del examen:</label>
-                    <input type="number" name="duration"  id="horaInicio" class="form-control" placeholder="Ingresar la hora de inicio del examen">
+                    <input type="number" name="duration"  id="horaInicio" class="form-control" placeholder="Ingresar la duración estimada del examen">
                 </div>
 
                 <div class="mb-3">
