@@ -155,7 +155,7 @@
     <!-- Sidebar nav para pantallas grandes -->
     <div class="sidebar-nav d-none d-md-block">
         <a class="navbar-brand" href="#"><img src="{{ asset('images/JDKJulietasLogoNegro.png') }}" alt="Logo" id="img-logoNav"></a>
-        <nav class="nav flex-column">
+        <nav class="navflex-column">
             <a class="nav-link" href="{{ route('Profesores.ConsultarAvisos') }}">Ver avisos</a>
             <a class="nav-link" href="{{ route('Profesores.asistencia')}}">Asistencias</a>
             <a class="nav-link" href="{{ route('Profesores.ConsultaExamenes') }}">Exámenes</a>
