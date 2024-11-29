@@ -6,7 +6,7 @@
             <div class="card-header text-white" style="background-color: #143d7c;">
                 <h2>Registra un nuevo usuario</h2>
             </div>
-        
+        @endif
 
         <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -119,5 +119,7 @@
 });
 
     </script>
+</body>
+</html>
 
 @endsection
