@@ -75,7 +75,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/crear-examen', [ExamenController::class, 'consult'])->name('Profesores.CrearExamen');
         Route::get('/profesor/avisos', [AvisoController::class, 'index'])->name('Profesor.ConsultarAvisos');
         Route::get('/clases/{id}', [ClaseController::class, 'index'])->name('classes.index');
-        Route::get('/alumno/{id}', [AlumnoController::class, 'show'])->name('alumno.show');
+        Route::get('/alumno/{id}', [AlumnoController::class, 'student'])->name('alumno.show');
 
     // Rutas para alumno
     Route::middleware(['role:student'])->get('/alumnos', [AlumnoController::class, 'alumno.avisos']);
