@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    @extends('layouts.Molde')
+    @extends('layouts.MoldeTeachers')
 
 @section('title', 'Lista de Clases')
 

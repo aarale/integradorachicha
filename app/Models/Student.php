@@ -14,7 +14,7 @@ class Student extends Model
 
         public function person()
     {
-        return $this->belongsTo(People::class);
+        return $this->belongsTo(People::class, 'id');
     }
 
 
@@ -56,5 +56,14 @@ class Student extends Model
         public function classes()
     {
         return $this->belongsToMany(CustomClass::class, 'student_classes', 'student_id', 'class_id');
+    }
+
+        public function custom_user()
+        {
+        return $this->hasOne(CustomUser::class, 'student_id', 'id');
+        }
+        public function exams()
+    {
+        return $this->belongsToMany(Exam::class, 'exam_student', 'student_id', 'exam_id');
     }
 }

@@ -14,9 +14,9 @@ class People extends Model
     public function Administrator()
     {
         return $this-> hasOne(People::class, 'person_id', 'id');
-    }
+    }   
 
-    public function Student()
+    public function Students()
     {
         return $this-> hasOne(Student::class, 'person_id', 'id');
     }

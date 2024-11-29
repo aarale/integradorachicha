@@ -90,12 +90,8 @@ public function store(Request $request)
     public function addStudentsToClass($classId, $studentIds)
 {
     $class = CustomClass::find($classId);
-
     $class->students()->attach($studentIds);
-
-   
     $class->students()->sync($studentIds);
-
     return back()->with('success', 'Estudiantes agregados correctamente.');
 }
 
