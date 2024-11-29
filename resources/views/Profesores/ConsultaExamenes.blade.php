@@ -13,7 +13,7 @@
                 <div class="card-body p-4">
                     <div class="table-responsive">
                         <table class="table table-hover">
-                            <thead class="table-dark">
+                            <thead class="table-dark"  >
                                 <tr>
                                     <th>Fecha</th>
                                     <th>Nombre</th>
@@ -23,7 +23,7 @@
                                     <th>Hora de Fin</th>
                                     <th>Estado</th>
                                     <th>Alumnos</th>
-                                    <th>Agregar Alumnos</th>
+                                    <th>Editar Examen</th>
                                     <th>Generar Hoja</th>
                                 </tr>
                             </thead>
@@ -38,7 +38,7 @@
                                         <td>{{ \Carbon\Carbon::parse($exam->date)->addHours($exam->duration)->format('h:i A') }}</td>
                                         <td><span class="badge bg-warning text-dark">Pendiente</span></td>
                                         <td><a href="#" class="text-decoration-none text-primary">Ver Alumnos</a></td>
-                                        <td><a href="#" class="text-decoration-none text-success">Agregar Alumnos</a></td>
+                                        <td><a href="#" class="text-decoration-none text-success">Modificar examen</a></td>
                                         <td><a href="#" class="text-decoration-none text-info">Generar Hoja</a></td>
                                     </tr>
                                 @endforeach

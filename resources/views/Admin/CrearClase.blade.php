@@ -1,4 +1,6 @@
-
+@extends('layouts.MoldeAdmin')
+@section('title', 'Crear Clase')
+@section('content')
 <div class="container">
     <h2 class="text-center my-4">Lista de Clases</h2>
 
@@ -36,4 +38,4 @@
         <button type="submit" class="btn btn-danger w-100">Crear Clase</button>
     </form>
 </div>
-
+@endsection
