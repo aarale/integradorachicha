@@ -1,4 +1,4 @@
-@extends('layouts.Molde')
+@extends('layouts.MoldeTeachers')
 
 @section('title', 'Exámenes')
 
@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-10 col-lg-8 my-4">
             <div class="card shadow-lg border-light">
-                <div class="card-header text-white text-center py-3" style="border-radius: 10px 10px 0 0; background-color: #143d7c;">
+                <div class="card-header text-black text-center py-3" style="border-radius: 10px 10px 0 0; ">
                     <h2 class="mb-0">Exámenes</h2>
                 </div>
                 <div class="card-body p-4">
@@ -47,8 +47,8 @@
                     </div>
 
                     <div class="text-center mt-4">
-                        <a href="{{ route('examen.store') }}" class="btn btn-lg btn-danger px-4 py-3" style="border-radius: 50px; font-size: 18px;">
-                            <i class="fas fa-plus-circle me-2"></i>Crear Examen
+                        <a href="{{ route('Profesores.CrearExamen')}}" class="btn btn-lg btn-danger px-4 py-3" style="border-radius: 50px; font-size: 18px;">
+                            <i class="fas fa-plus-circle me-2"> </i>Crear Examen
                         </a>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ExamenController;
 use App\Http\Controllers\AsistenciaController;
+use App\Http\Controllers\UsrController;
 
 
 Route::get('/', function () {
@@ -56,19 +57,24 @@ Route::middleware('auth')->group(function () {
     Route::middleware(['role:teacher'])->get('/profesores', [ProfesorController::class, 'vistaprincipal']); 
         Route::get('/dashboard', [ProfesorController::class, 'index'])->name('profesor.dashboard');
         Route::get('/clases', [ClaseController::class, 'index'])->name('Profesores.Clases.index');
-        Route::get('/crearexamen', [ProfesorController::class, 'crearExamen'])->name('profesores.crearexamen');
+
+       // Route::get('/crearexamen', [ProfesorController::class, 'crearExamen'])->name('Profesores.CrearExamen');
+        
         Route::post('/crear/examen', [ExamenController::class, 'store'])->name('examen.store');
         // Route::get('/clases/asistencia', function () {return view('profesores.clases.asistencia'); 
         // })->name('profesor.clases.asistencia');
-
-        Route::get('/clasesasistencia', [AsistenciaController::class, 'mostrarAsistencia'])->name('verasistencia');
-        Route::get('/tomarasistencia', [AsistenciaController::class, 'tomarAsistencia'])->name('tomarasistencia');
-        Route::post('/clases/asistencia', [AsistenciaController::class, 'attendancestudent'])->name('asistencia.store');
+        Route::get('/asistencia', [AsistenciaController::class, 'index'])->name('Profesores.asistencia');
+       // Route::get('/clases/asistencia', [AsistenciaController::class, 'index'])->name('asistencia.index');
+        Route::post('/clases/asistencia', [AsistenciaController::class, 'store'])->name('asistencia.store');
         Route::get('/consulta/examenes', [ExamenController::class, 'index'])->name('exam.index');
-        Route::middleware(['role:student'])->get('/alumnos', [AlumnoController::class, 'alumno.avisos']);
+   
+    Route::middleware(['role:student'])->get('/alumnos', [AlumnoController::class, 'alumno.avisos']);
         Route::get('/progreso', [AlumnoController::class, 'progreso'])->name('alumnos.progreso');
         Route::get('/avisos', [AlumnoController::class, 'avisos'])->name('alumnos.avisos');
         Route::get('/alumno/{id}', [AlumnoController::class, 'show'])->name('alumno.show');
+
+        Route::get('/clasesasistencia', [AsistenciaController::class, 'mostrarAsistencia'])->name('verasistencia');
+        Route::get('/tomarasistencia', [AsistenciaController::class, 'tomarAsistencia'])->name('tomarasistencia');
    
 
 

@@ -17,9 +17,10 @@ class ClaseController extends Controller
     if (!$user->teacher) {
         return redirect()->route('home')->with('error', 'No tienes clases asignadas.');
     }
-
+    
     $classes = CustomClass::where('teacher_id', $user->teacher->id)->get();
-
+    
+    
     foreach ($classes as $class) {
         $class->students = $class->students()->get(); 
     }
@@ -88,12 +89,8 @@ public function store(Request $request)
     public function addStudentsToClass($classId, $studentIds)
 {
     $class = CustomClass::find($classId);
-
     $class->students()->attach($studentIds);
-
-   
     $class->students()->sync($studentIds);
-
     return back()->with('success', 'Estudiantes agregados correctamente.');
 }
 
@@ -105,3 +102,5 @@ public function testRedirect()
 
 
 }
+
+

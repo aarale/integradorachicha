@@ -10,6 +10,8 @@ return new class extends Migration
     {
         Schema::create('exam_student', function (Blueprint $table) {
             $table->id();
+            $table->Integer('exam_id');
+            $table->Integer('student_id');
             $table->foreignId('exam_id')->constrained('exams');
             $table->foreignId('student_id')->constrained('students');
             $table->timestamps();

@@ -21,7 +21,7 @@
                             Clases
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="clasesDropdown">
-                            <li><a class="dropdown-item" href="{{ route('profesor.clases.index') }}">Mis Clases</a></li>
+                            <li><a class="dropdown-item" href="{{ route('Profesores.Clases.index') }}">Mis Clases</a></li>
                             <li><a class="dropdown-item" >Horarios</a></li>
                         </ul>
                     </li>
@@ -48,7 +48,7 @@
                             Exámenes
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="examenesDropdown">
-                            <li><a class="dropdown-item" href="{{ route('profesores.crearexamen') }}">Crear Examen</a></li>
+                            <li><a class="dropdown-item" href="{{ route('Profesores.CrearExamen') }}">Crear Examen</a></li>
                             <li><a class="dropdown-item" >Resultados</a></li>
                         </ul>
                     </li>
