@@ -19,16 +19,16 @@
         }
 
         .sidebar-nav {
-            position: fixed; /* Sidebar fijo */
+            position: fixed;
             top: 0;
             left: 0;
             background-color: #ebebeb;
             border-right: 1px solid #e0e0e0;
             padding-top: 40px;
             width: 220px;
-            height: 100vh; /* Altura completa de la ventana */
+            height: 100vh; 
             overflow-y: auto;
-            z-index: 1000; /* Asegura prioridad sobre otros elementos */
+            z-index: 1000;
         }
 
         .sidebar-nav .nav-link {
@@ -67,13 +67,11 @@
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-left: 220px; /* Separación del sidebar */
+            margin-left: 220px; 
         }
 
         .header {
-            background-color: #bad7e6;
             padding: 10px 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             margin-bottom: 20px;
             position: relative;
@@ -144,12 +142,10 @@
         </button>
         <div class="collapse navbar-collapse" id="mobileSidebar">
             <nav class="nav flex-column">
-                <a class="nav-link" href="#inicio">Avisos</a>
-                <a class="nav-link" href="#importante">Usuarios</a>
-                <a class="nav-link" href="#enviados">Finanzas</a>
-                <a class="nav-link" href="#borradores">Exámenes</a>
-                <a class="nav-link" href="#papelera">Clases</a>
-                <a class="nav-link" href="#alumnos">Alumnos</a>
+            <a class="nav-link" href="{{ route('Profesores.ConsultarAvisos') }}">Ver avisos</a>
+            <a class="nav-link" href="{{ route('Profesores.asistencia')}}">Asistencias</a>
+            <a class="nav-link" href="{{ route('Profesores.ConsultaExamenes') }}">Exámenes</a>
+            <a class="nav-link" href="{{ route('Profesores.Clases.index') }}">Clases</a>
             </nav>
         </div>
     </div>
@@ -159,13 +155,11 @@
     <!-- Sidebar nav para pantallas grandes -->
     <div class="sidebar-nav d-none d-md-block">
         <a class="navbar-brand" href="#"><img src="{{ asset('images/JDKJulietasLogoNegro.png') }}" alt="Logo" id="img-logoNav"></a>
-        <nav class="nav flex-column">
-            <a class="nav-link" href="#inicio">Avisos</a>
-            <a class="nav-link" href="#importante">Usuarios</a>
-            <a class="nav-link" href="#enviados">Finanzas</a>
-            <a class="nav-link" href="/">Crear Examen</a>
-            <a class="nav-link" href="#papelera">Clases</a>
-            <a class="nav-link" href="#alumnos">Alumnos</a>
+        <nav class="navflex-column">
+            <a class="nav-link">Ver avisos</a>
+            <a class="nav-link" href="{{ route('Profesores.asistencia')}}">Asistencias</a>
+            <a class="nav-link" href="{{ route('Profesores.ConsultaExamenes') }}">Exámenes</a>
+            <a class="nav-link" href="{{ route('Profesores.Clases.index') }}">Clases</a>
         </nav>
     </div>
 
@@ -173,7 +167,6 @@
     <div class="content container-fluid">
         <!-- Header -->
         <header class="header d-flex align-items-center">
-            <h1 class="h5 mb-0"></h1>
             <button id="profileButton" class="btn btn-outline-secondary ms-auto" style="background-color: #f77070; color: #373737;">Perfil</button>
         </header>
 
@@ -205,26 +198,7 @@
         dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     });
 </script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const header = document.querySelector('.header h1'); // Selección del encabezado
-        const navLinks = document.querySelectorAll('.nav-link'); // Selección de enlaces de navegación
 
-        // Escucha clics en los enlaces del menú
-        navLinks.forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault(); // Evitar el comportamiento predeterminado del enlace
-
-                // Actualizar el texto del encabezado
-                header.textContent = this.textContent;
-
-                // Eliminar la clase "active" de todos los enlaces y añadirla al seleccionado
-                navLinks.forEach(nav => nav.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    });
-</script>
 
 </body>
 </html>

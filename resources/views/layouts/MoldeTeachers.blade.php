@@ -19,16 +19,16 @@
         }
 
         .sidebar-nav {
-            position: fixed; /* Sidebar fijo */
+            position: fixed;
             top: 0;
             left: 0;
             background-color: #ebebeb;
             border-right: 1px solid #e0e0e0;
             padding-top: 40px;
             width: 220px;
-            height: 100vh; /* Altura completa de la ventana */
+            height: 100vh; 
             overflow-y: auto;
-            z-index: 1000; /* Asegura prioridad sobre otros elementos */
+            z-index: 1000;
         }
 
         .sidebar-nav .nav-link {
@@ -67,7 +67,7 @@
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-left: 220px; /* Separación del sidebar */
+            margin-left: 220px; 
         }
 
         .header {
@@ -156,7 +156,7 @@
     <div class="sidebar-nav d-none d-md-block">
         <a class="navbar-brand" href="#"><img src="{{ asset('images/JDKJulietasLogoNegro.png') }}" alt="Logo" id="img-logoNav"></a>
         <nav class="navflex-column">
-            <a class="nav-link" href="{{ route('Profesores.ConsultarAvisos') }}">Ver avisos</a>
+            <a class="nav-link">Ver avisos</a>
             <a class="nav-link" href="{{ route('Profesores.asistencia')}}">Asistencias</a>
             <a class="nav-link" href="{{ route('Profesores.ConsultaExamenes') }}">Exámenes</a>
             <a class="nav-link" href="{{ route('Profesores.Clases.index') }}">Clases</a>
