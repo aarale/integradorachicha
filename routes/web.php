@@ -40,7 +40,7 @@ Route::post('/users', [UserController::class, 'store'])->name('users.store');
 Route::get('/clases', [ClaseController::class, 'index'])->name('admin.clases.index');
 
 
-
+Route::post('/avisosAdmin', [AvisoController::class, 'avisosAdmin'])->name('Admin.AvisosAdmin');
 Route::middleware('auth')->group(function () {
 
     Route::middleware(['role:admin'])->get('/admin', [AdminController::class, 'Admin.InicioAdmin']); 
@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/clases/{id}', [ClaseController::class, 'show'])->name('admin.clases.show');
         Route::get('/clases/{id}/edit', [ClaseController::class, 'edit'])->name('admin.clases.edit');
         Route::put('/clases/{id}', [ClaseController::class, 'update'])->name('admin.clases.update');
-        Route::post('/avisos', [AvisoController::class, 'crearAviso'])->name('Profesor.CrearAviso');
+
         
 
 

@@ -142,10 +142,15 @@
         </button>
         <div class="collapse navbar-collapse" id="mobileSidebar">
             <nav class="nav flex-column">
-            <a class="nav-link" href="{{ route('Profesores.ConsultarAvisos') }}">Ver avisos</a>
-            <a class="nav-link" href="{{ route('Profesores.asistencia')}}">Asistencias</a>
-            <a class="nav-link" href="{{ route('Profesores.ConsultaExamenes') }}">Exámenes</a>
-            <a class="nav-link" href="{{ route('Profesores.Clases.index') }}">Clases</a>
+            <a class="nav-link" >Ver avisos</a>
+            <a class="nav-link" >Clases</a>
+            <a class="nav-link" >Alumnos</a>
+            <a class="nav-link" >Finanzas</a>
+            <a class="nav-link" >Usuarios</a>
+            <a class="nav-link" >Eventos</a>
+            <a class="nav-link" >Notificaciones</a>
+            <a class="nav-link" >Inventario</a>
+            <a class="nav-link" >Reportes</a>
             </nav>
         </div>
     </div>
@@ -156,10 +161,15 @@
     <div class="sidebar-nav d-none d-md-block">
         <a class="navbar-brand" href="#"><img src="{{ asset('images/JDKJulietasLogoNegro.png') }}" alt="Logo" id="img-logoNav"></a>
         <nav class="navflex-column">
-            <a class="nav-link">Ver avisos</a>
-            <a class="nav-link" href="{{ route('Profesores.asistencia')}}">Asistencias</a>
-            <a class="nav-link" href="{{ route('Profesores.ConsultaExamenes') }}">Exámenes</a>
-            <a class="nav-link" href="{{ route('Profesores.Clases.index') }}">Clases</a>
+            <a class="nav-link" >Ver avisos</a>
+            <a class="nav-link" >Clases</a>
+            <a class="nav-link" >Alumnos</a>
+            <a class="nav-link" >Finanzas</a>
+            <a class="nav-link" >Usuarios</a>
+            <a class="nav-link" >Eventos</a>
+            <a class="nav-link" >Notificaciones</a>
+            <a class="nav-link" >Inventario</a>
+            <a class="nav-link" >Reportes</a>
         </nav>
     </div>
 

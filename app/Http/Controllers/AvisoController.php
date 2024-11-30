@@ -27,6 +27,14 @@ class AvisoController extends Controller
             'message' => $request->message,
         ]);
 
-        return redirect()->route('Profesor.ConsultarAvisos');  }
+        return redirect()->route('Profesor.ConsultarAvisos');  
+    }
+
+    public function avisosAdmin(){
+        $avisos = Notification::all();
+        return view('Admin.AvisosAdmin', compact('avisosAdmin'));
+    }
+
+
 }
 
