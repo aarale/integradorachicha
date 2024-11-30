@@ -3,7 +3,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CustomClass;
-use App\Models\Teacher;
+use App\Models\Student;
+use App\Models\Role; 
 
 class ClaseController extends Controller
 {
@@ -101,5 +102,3 @@ public function testRedirect()
 
 
 }
-
-

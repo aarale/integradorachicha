@@ -9,7 +9,7 @@ use App\Models\StudentClass;
 
 class CustomClass extends Model
 {
-    protected $table = 'classes';
+    protected $table = 'customclasses';
     protected $primaryKey = 'id';
     protected $fillable = ['teacher_id', 'name', 'schedule_day', 'schedule_start',
                             'schedule_end', 'capacity', 'created_at', 'updated_at'];

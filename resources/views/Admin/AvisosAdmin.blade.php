@@ -1,4 +1,4 @@
-@extends('layouts.MoldeTeachers')
+@extends('layouts.MoldeAdmin')
 
 @section('title', 'Avisos')
 
