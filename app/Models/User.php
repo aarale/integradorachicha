@@ -3,15 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use App\Models\Role; 
+use App\Models\UserRol;
+use App\Models\Loan;
+use App\Models\Teacher;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class CustomUser extends Authenticatable
+class User extends Authenticatable
 {
-    protected $table = 'custom_users';
+    protected $table = 'users';
     protected $primaryKey = 'id';
-    public $fillable = ['person_id','username','password','email', 'active', ];
+    public $fillable = ['person_id','username','password','email', 
+                        'active', 'created_at', 'updated_at'];
     protected $hidden = [
         'password',
     ];
@@ -29,9 +32,6 @@ class CustomUser extends Authenticatable
 
         return $this->hasMany(Loan::class, 'user_id', 'id');
     }
-
-    
-    
 
 public function teacher()
 {

@@ -44,39 +44,52 @@
 
 <div class="container mt-5">
     <h1 class="text-center mb-4">Asistencias de las Clases</h1>
-    <div class="accordion" id="accordionPanelsStayOpenExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                    Clase 5-6
-                </button>
-            </h2>
-            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                <div class="accordion-body">
-                    <table class="table table-striped table-bordered">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Alumno</th>
-                                <th>Asistencia</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($studentsAttendance as $attendance)
+    
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <form action="{{ route('asistenciatomada') }}" method="POST">
+        @csrf
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                        Asistencia <input type= "date">  
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+                        <table class="table table-striped table-bordered">
+                            <thead class="table-dark">
                                 <tr>
-                                    <td>{{ $attendance->first_name }} {{ $attendance->last_name }}</td>
-                                    <td>
-                                        <input type="checkbox" 
-                                               class="form-check-input" 
-                                               {{ $attendance->attendance_status ? 'checked' : '' }} 
-                                               enabled>
-                                    </td>
+                                    <th>Alumno</th>
+                                    <th>Asistencia</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($studentsAttendance as $attendance)
+                                    <tr>
+                                        <td>{{ $attendance->first_name }} {{ $attendance->last_name }}</td>
+                                        <td>
+                                            <input type="checkbox" 
+                                                   class="form-check-input" 
+                                                   name="attendance[{{ $attendance->student_id }}]" 
+                                                   {{ $attendance->attendance_status ? 'checked' : 'false' }}>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
 </div>
 @endsection

@@ -3,15 +3,12 @@
 @section('title', 'Asistencia')
 
 @section('content')
-<!-- Estilo directo en la vista -->
 <style>
     .table th, .table td {
         text-align: center;
         vertical-align: middle;
     }
-</style>
 
-<style>
     .form-check-input {
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -27,13 +24,6 @@
     .form-check-input:checked {
         background-color: black;
         border-color: black;
-    }
-
-    .form-check-input:checked::before {
-        color: white;
-        position: absolute;
-        top: 0;
-        left: 3px;
     }
 
     .form-check-input:not(:checked) {
@@ -65,8 +55,7 @@
                             @foreach ($attendances as $attendance)
                                 <tr>
                                     <td>{{ $attendance->first_name }} {{ $attendance->last_name }}</td>
-                                    <td>{{ $date }}</td>
-                                    <td>{{ $attendance->attendance }}</td>
+                                    <td>{{ $attendance->attendance ? 'Presente' : 'Ausente' }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -7,7 +7,7 @@
                 <h1 class="mb-0">{{ $student->person->first_name }} {{ $student->person->last_name }}</h1>
             </div>
             <div class="card-body">
-                <p><strong>Correo:</strong> {{ $student->custom_users->email }}</p>
+                <p><strong>Correo:</strong> {{ $student->users->email }}</p>
                 <p><strong>Dirección:</strong> {{ $student->person->address }}</p>
                 <p><strong>Teléfono:</strong> {{ $student->person->phone }}</p>
                 @if($student->role)

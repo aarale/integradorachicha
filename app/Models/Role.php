@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Models;
-use App\Http\Controllers;
-
+use App\Models\User;
+use App\Models\UserRol;
+use App\Models\People;
 use Illuminate\Database\Eloquent\Model;
+
 
 class Role extends Model
 {
@@ -15,7 +17,7 @@ class Role extends Model
 
     public function users()
     {
-        return $this->belongsToMany(CustomUser::class, 'user_role', 'role_id', 'user_id');
+        return $this->belongsToMany(User::class, 'user_role', 'role_id', 'user_id');
     }
     public function register()
 {

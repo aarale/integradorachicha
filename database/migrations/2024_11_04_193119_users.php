@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -11,28 +12,29 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('custom_users', function (Blueprint $table) {
+        if (!Schema::hasTable('users')) 
+        Schema::create('users', function (Blueprint $table){
             $table->id();
             $table->foreignId('person_id')->constrained('people');
             $table->string('username', 50);
-            $table->string('password');
+            $table->string('password', 255);
             $table->string('email', 100);
             $table->string('recovery_email', 100)->nullable();
             $table->string('recovery_token', 255)->nullable();
-            $table->timestamp('token_expiration')->nullable();
-            $table->timestamp('registration_date')->nullable();
+            $table->time('token_expiration')->nullable();
             $table->boolean('active')->default(true);
-            
-            $table->string('profile_picture', 255)->nullable();
-
-            $table->timestamps();
+            $table->binary('profile_picture')->nullable();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));;
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
+    
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('custom_users');
+        Schema::dropIfExists('users');
     }
 };
