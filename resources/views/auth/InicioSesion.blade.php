@@ -87,6 +87,7 @@
             <div class="text-center">
                 <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
             </div>
+            <a href=" ">olvidaste tu contraseña?</a>
         </form>
     </div>
 </div>
