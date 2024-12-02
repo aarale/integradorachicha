@@ -1,6 +1,7 @@
 <?php
 
 use Laravel\Fortify\Features;
+use Laravel\Fortify\FortifyServiceProvider;
 
 return [
 
@@ -155,5 +156,9 @@ return [
             // 'window' => 0,
         ]),
     ],
+    'providers' => [
+    
+        Laravel\Fortify\FortifyServiceProvider::class,
+],
 
 ];
