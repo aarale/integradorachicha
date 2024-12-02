@@ -11,17 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('users')) {
-            Schema::create('users', function (Blueprint $table) {
-                $table->id();
-                $table->string('name');
-                $table->string('email')->unique();
-                $table->timestamp('email_verified_at')->nullable();
-                $table->string('password');
-                $table->rememberToken();
-                $table->timestamps();
-            });
-        }
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('person_id')->after('id');
+            $table->string('recovery_email', 100)->nullable()->after('email');
+            $table->string('recovery_token', 255)->nullable()->after('recovery_email');
+            $table->time('token_expiration')->nullable()->after('recovery_token');
+            $table->boolean('active')->default(1)->after('token_expiration');
+            $table->binary('profile_picture')->nullable()->after('active'); 
+            $table->foreign('person_id')->references('id')->on('people');
+        });
     }
 
     /**
@@ -29,6 +27,17 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customusers'); // Elimina la tabla `users` si existe.
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['person_id']);
+            $table->dropColumn([
+                'person_id',
+                'username',
+                'recovery_email',
+                'recovery_token',
+                'token_expiration',
+                'active',
+                'profile_picture'
+            ]);
+        });
     }
 };

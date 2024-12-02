@@ -8,6 +8,7 @@
             </div>
 
         <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+          
             @csrf
 
             <fieldset>
@@ -34,17 +35,18 @@
                 </div>
                 <div class="mb-3">
                     <label for="username" class="form-label">Nombre de Usuario</label>
-                    <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-                <div class="mb-3">
+                    <input type="text" class="form-control" id="name" name="name" value="{{ old('username') }}" required>
+                </div> 
+                 <div class="mb-3">
                     <label for="email" class="form-label">Correo Electrónico</label>
                     <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
                 </div>
                 <div class="mb-3">
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+
                     <label for="role_id" class="form-label">Rol</label>
                     <select class="form-select" id="role_id" name="role_id" required>
                         <option value="" disabled {{ old('role_id') ? '' : 'selected' }}>Seleccione un rol</option>
@@ -93,7 +95,9 @@
                     <input type="number" class="form-control" id="belt_id" name="belt_id" value="{{ old('belt_id') }}">
                 </div>
             </div>
-            
+            {{-- Verifica si hay errores de validación y los muestra --}}
+
+
 
             <button type="submit" class="btn btn-outline-primary">Enviar</button>
         </form>

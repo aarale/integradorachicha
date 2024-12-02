@@ -77,11 +77,17 @@
             @csrf
             <div class="form-group">
                 <label for="username">Usuario:</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Ingresa tu usuario" required>
+                <input type="text" class="form-control" id="username" name="username" value="{{odl('username')}}"placeholder="Ingresa tu usuario" required>
+                @error('email')
+                    <div>{{$message}}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="password">Contraseña:</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+                @error('password')
+                    <div>{{$message}}</div>
+                @enderror
                 <label for="password" class="text-danger" style="font-size: 12px;">Minimo 8 caracteres</label>
             </div>
             <div class="text-center">

@@ -12,6 +12,9 @@ use Illuminate\View\View;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\RegistrationMail;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 
 class UserController extends Controller
@@ -28,7 +31,7 @@ class UserController extends Controller
     {
         $User = null;
         $User = CustomUser::all();
-        return view('InicioSesion');
+        return view('auth.InicioSesion');
     }
 
     public function create()
@@ -136,15 +139,16 @@ class UserController extends Controller
 
     public function store(Request $request)
 {
+    
     $validatedData = $request->validate([
         'first_name' => 'required',
         'last_name' => 'required',
         'birth_date' => 'required|date',
         'address' => 'required',
         'phone' => 'required',
-        'username' => 'required',
-        'password' => 'required|min:8',
+        'name' => 'required',
         'email' => 'required|email',
+        'password' => 'required|min:8',
         'role_id' => 'required|exists:roles,id',
         'emergency_contact_first_name' => 'required_if:role_id,3',
         'emergency_contact_last_name' => 'required_if:role_id,3',
@@ -156,6 +160,7 @@ class UserController extends Controller
         'belt_id' => 'nullable|exists:belts,id',
         'profile_picture' => 'nullable|image|max:2048',
     ]);
+        
 
     try {
         $profilePicture = null;
@@ -171,9 +176,9 @@ class UserController extends Controller
             $validatedData['birth_date'],
             $validatedData['address'],
             $validatedData['phone'],
-            $validatedData['username'],
-            Hash::make($validatedData['password']),
+            $validatedData['name'],
             $validatedData['email'],
+            Hash::make($validatedData['password']),
             $validatedData['role_id'],
             $validatedData['emergency_contact_first_name'] ?? null,     
             $validatedData['emergency_contact_last_name'] ?? null,      
@@ -184,6 +189,9 @@ class UserController extends Controller
             $beltId, 
             $profilePicture,                                           
         ]);
+        $user = User::where('email', $validatedData['email'])->first();
+
+        Mail::to($user->email)->send(new RegistrationMail($user));
 
         return redirect()->route('admin.users.create')->with('success', 'Usuario creado exitosamente');
     } catch (\Exception $e) {

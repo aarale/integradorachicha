@@ -174,7 +174,10 @@
         <div class="profile-dropdown" id="profileDropdown">
             <img src="https://via.placeholder.com/50" alt="Foto de perfil" class="rounded-circle mb-2">
             <p class="fw-bold mb-1">Usuario</p>
-            <button class="btn btn-danger btn-sm w-100">Cerrar sesión</button>
+            <form action="{{route ('logout')}}" method="POST">
+                @csrf <button class="btn btn-danger btn-sm w-100">Cerrar sesión</button>
+            </form>
+            
         </div>
 
         <section id="inicio" class="mt-4">
