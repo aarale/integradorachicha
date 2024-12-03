@@ -40,42 +40,19 @@ public function consult()
     return view('Profesores.CrearExamen', compact('groupedStudents'));
 }
 
-    
-
- 
-
-/*
-    $studentsGroupedByClass = $students->groupBy('class_name');
-
-    return view('Profesores.CrearExamen', compact('studentsGroupedByClass'));*/
-//}
-
 
     public function consultarExamenes(){
         $exams = Exam::all();
 
+        //
+
         return view('Profesores.ConsultaExamenes', compact('exams'));
     }
-/*
-    public function store(Request $request)
-{
-    DB::table('exams')->insert([
-        'name' => $request->name,
-        'location' => $request->location,
-        'date' => date('Y-m-d H:i:s', strtotime($request->date)),
-        'duration' => $request->duration,
-        'description' => $request->description,
-        'created_at' => now(),
-        'updated_at' => now(),
-    ]);
-    
+
     
 
-    return redirect()->route('consulta/examenes')->with('success', 'Examen creado exitosamente.');
-}
-    */
     public function store(Request $request)
-{
+    {
     
     $request->validate([
         'name' => 'required|string|max:50',
@@ -96,8 +73,6 @@ public function consult()
     if ($request->has('students')) {
         $exam->students()->sync($request->students);
     }
-   
-    
     
         return redirect()->route('Profesores.CrearExamen')->with('success', 'Examen creado exitosamente.');
     }

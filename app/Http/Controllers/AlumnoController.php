@@ -56,7 +56,6 @@ class AlumnoController extends Controller
 
     public function payments($studentId)
     {
-        // Realizar la consulta a la base de datos
         $payments = DB::select("
             SELECT 
                 p.reference AS reference_payment,          
@@ -68,7 +67,6 @@ class AlumnoController extends Controller
             WHERE s.id = ?
         ", [$studentId]);
 
-        // Pasar los datos a la vista
         return view('Alumno.Pagos', ['payments' => $payments]);
     }
 
@@ -89,6 +87,77 @@ class AlumnoController extends Controller
     ", [$userId]);
 
     return view('Alumno.Prestamos', ['loans' => $loans]);
-}
+    }
+
+
+    public function progress($studentId)
+    {
+        $studentProgress = DB::select("
+            SELECT 
+                p.first_name,
+                p.last_name,
+                b.name AS current_belt,
+                b.color AS current_belt_color,
+                ex.date AS exam_date,
+                ex.name AS exam_name,
+                ev.date_time AS event_date,
+                ev.name AS event_name,
+                es_event.result AS event_result
+            FROM 
+                students s
+            JOIN 
+                people p ON s.person_id = p.id
+            JOIN 
+                student_belts sb ON s.id = sb.student_id AND sb.active = 1
+            JOIN 
+                belts b ON sb.belt_id = b.id
+            LEFT JOIN 
+                exam_student es_exam ON s.id = es_exam.student_id
+            LEFT JOIN 
+                exams ex ON es_exam.exam_id = ex.id
+            LEFT JOIN 
+                event_students es_event ON s.id = es_event.student_id
+            LEFT JOIN 
+                events ev ON es_event.event_id = ev.id
+            WHERE 
+                s.id = ?
+        ", [$studentId]);
+
+        $exams = [];
+        $belts = [];
+        $events = [];
+
+        foreach ($studentProgress as $progress) {
+            $studentName = $progress->first_name . ' ' . $progress->last_name;
+            $currentBelt = $progress->current_belt;
+
+            if ($progress->exam_date) {
+                $exams[] = [
+                    'date' => $progress->exam_date,
+                    'name' => $progress->exam_name,
+                    'belt' => $progress->current_belt_color 
+                ];
+            }
+
+           if ($progress->event_date) {
+                $events[] = [
+                    'date' => $progress->event_date,
+                    'name' => $progress->event_name,
+                    'result' => $progress->event_result
+                ];
+            }
+        }
+
+        $belts = DB::select("
+            SELECT b.name AS belt_name, sb.created_at AS date
+            FROM student_belts sb
+            JOIN belts b ON sb.belt_id = b.id
+            WHERE sb.student_id = ?
+            ORDER BY sb.created_at ASC
+        ", [$studentId]);
+
+        return view('Alumno.Progreso', compact('studentName', 'currentBelt', 'exams', 'belts', 'events'));
+    }
+    
 
 }

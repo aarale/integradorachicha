@@ -15,7 +15,10 @@ use App\Http\Controllers\AvisoController;
         Route::get('/tomarasistencia', [AsistenciaController::class, 'tomarAsistencia'])->name('tomarasistencia');
         Route::post('/tomarasistencia', [AsistenciaController::class, 'guardarAsistencia'])->name('asistenciatomada');
         Route::get('/payments/student/{id}', [AlumnoController::class, 'payments'])->name('studentpays');   
-        Route::get('loans/student/{id}', [AlumnoController::class, 'loans'])->name('studentloans');
+        Route::get('/loans/student/{id}', [AlumnoController::class, 'loans'])->name('studentloans');
+        Route::get('/progress/student/{id}', [AlumnoController::class, 'progress'])->name('studentprogress');
+        Route::get('/consulta/examenes', [ExamenController::class, 'consultarExamenes'])->name('Profesores.ConsultaExamenes');
+
 
 Route::get('/', function () {
     return view('inicio');
@@ -72,7 +75,6 @@ Route::prefix('profesores')->group(function () {
         Route::get('/asistencia', [AsistenciaController::class, 'index'])->name('Profesores.asistencia');
        // Route::get('/clases/asistencia', [AsistenciaController::class, 'index'])->name('asistencia.index');
         Route::post('/clases/asistencia', [AsistenciaController::class, 'store'])->name('asistencia.store');
-        Route::get('/consulta/examenes', [ExamenController::class, 'consultarExamenes'])->name('Profesores.ConsultaExamenes');
         Route::get('profesores/avisos', [AvisoController::class, 'avisosTeacher'])->name('Profesores.ConsultarAvisos');
 
         // Route::get('/avisos', [AvisoController::class, 'avisosTeacher'])->name('Profesores.ConsultarAvisos');

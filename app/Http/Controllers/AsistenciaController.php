@@ -36,6 +36,7 @@ class AsistenciaController extends Controller
 
         return view('Profesores.asistencia', compact('attendances'));
     }
+    
 
     public static function attendancestudent()
     {
