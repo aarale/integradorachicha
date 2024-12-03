@@ -28,4 +28,7 @@ class AdminController extends Controller
     public function addusr(){
         return view('Admin.InicioAdmin');
     }
+    public function proves(){
+        return view('Admin.Prestamos');
+    }
 }

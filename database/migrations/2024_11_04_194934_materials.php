@@ -12,6 +12,7 @@ return new class extends Migration
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
             $table->string('product', 50);
+            $table->integer('reference');
             $table->integer('total_quantity');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));;
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));

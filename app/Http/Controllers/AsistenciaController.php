@@ -28,12 +28,10 @@ class AsistenciaController extends Controller
             a.class_id = ? 
         ";
 
-        // Ejecutar la consulta
         $attendances = DB::select($query, [$classId]);
 
-        // Convertir attendance_status a booleano
         foreach ($attendances as $attendance) {
-            $attendance->attendance = (bool) $attendance->attendance; // Conversión explícita
+            $attendance->attendance = (bool) $attendance->attendance; 
         }
 
         return view('Profesores.asistencia', compact('attendances'));
@@ -74,7 +72,6 @@ class AsistenciaController extends Controller
     
         $studentsAttendance = DB::select($query, [$teacherId, $classId]);
     
-        // Pasar los resultados a la vista
         return view('Profesores.Clases.TomarAsistencia', compact('studentsAttendance'));
     }
 
