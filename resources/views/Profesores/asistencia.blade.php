@@ -1,7 +1,37 @@
 @extends('layouts.MoldeTeachers')
 
 @section('title', 'Asistencia')
+
 @section('content')
+<style>
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .form-check-input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #000;
+        border-radius: 3px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .form-check-input:checked {
+        background-color: black;
+        border-color: black;
+    }
+
+    .form-check-input:not(:checked) {
+        background-color: white;
+        border-color: #000;
+    }
+</style>
+
 <div class="container mt-5">
     <h1 class="text-center mb-4">Asistencias de las Clases</h1>
     <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -17,19 +47,15 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>Estudiante</th>
-                                <th>Estado</th>
+                                <th>Fecha</th>
+                                <th>Asistencia</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($attendances as $attendance)
                                 <tr>
-                                    <td>{{ $attendance->student->name }}</td>
-                                    <td>
-                                        <input type="checkbox" 
-                                               class="form-check-input" 
-                                               {{ $attendance->attendance_status ? 'checked' : '' }} 
-                                               disabled>
-                                    </td>
+                                    <td>{{ $attendance->first_name }} {{ $attendance->last_name }}</td>
+                                    <td>{{ $attendance->attendance ? 'Presente' : 'Ausente' }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

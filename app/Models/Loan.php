@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Material;
 
 class Loan extends Model
 {
@@ -18,6 +20,6 @@ class Loan extends Model
 
     public function User(){
 
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsToMany(User::class, 'user_id', 'id');
     }
 }

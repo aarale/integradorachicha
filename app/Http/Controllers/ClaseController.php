@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Models\Teacher; 
 use App\Models\User; 
 use App\Models\StudentBelt; 
+
 class ClaseController extends Controller
 {
 
@@ -104,5 +105,3 @@ public function testRedirect()
 
 
 }
-
-

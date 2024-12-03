@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\People;
+use App\Models\CustomClass;
 
 class Teacher extends Model
 {
     protected $table = 'teachers';
-    public $fillable = [ 'person_id', 'rfc'];
+    public $fillable = [ 'person_id', 'rfc', 'created_at', 'updated_at'];
 
     
 

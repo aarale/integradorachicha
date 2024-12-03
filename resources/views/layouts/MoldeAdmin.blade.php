@@ -146,6 +146,15 @@
             <a class="nav-link" href="{{ route('Profesores.asistencia')}}">Asistencias</a>
             <a class="nav-link" href="{{ route('Profesores.ConsultaExamenes') }}">Exámenes</a>
             <a class="nav-link" href="{{ route('Profesores.Clases.index') }}">Clases</a>
+            <a class="nav-link" >Ver avisos</a>
+            <a class="nav-link" >Clases</a>
+            <a class="nav-link" >Alumnos</a>
+            <a class="nav-link" >Finanzas</a>
+            <a class="nav-link" >Usuarios</a>
+            <a class="nav-link" >Eventos</a>
+            <a class="nav-link" >Notificaciones</a>
+            <a class="nav-link" >Inventario</a>
+            <a class="nav-link" >Reportes</a>
             </nav>
         </div>
     </div>
@@ -160,6 +169,15 @@
             <a class="nav-link" href="{{ route('Profesores.asistencia')}}">Asistencias</a>
             <a class="nav-link" href="{{ route('Profesores.ConsultaExamenes') }}">Exámenes</a>
             <a class="nav-link" href="{{ route('Profesores.Clases.index') }}">Clases</a>
+            <a class="nav-link" >Ver avisos</a>
+            <a class="nav-link" >Clases</a>
+            <a class="nav-link" >Alumnos</a>
+            <a class="nav-link" >Finanzas</a>
+            <a class="nav-link" >Usuarios</a>
+            <a class="nav-link" >Eventos</a>
+            <a class="nav-link" >Notificaciones</a>
+            <a class="nav-link" >Inventario</a>
+            <a class="nav-link" >Reportes</a>
         </nav>
     </div>
 

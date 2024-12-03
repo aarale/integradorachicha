@@ -142,10 +142,10 @@
         </button>
         <div class="collapse navbar-collapse" id="mobileSidebar">
             <nav class="nav flex-column">
-            <a class="nav-link" >Ver avisos</a>
-            <a class="nav-link" href="{{ route('Profesores.asistencia')}}">Asistencias</a>
-            <a class="nav-link" href="{{ route('Profesores.ConsultaExamenes') }}">Exámenes</a>
-            <a class="nav-link" href="{{ route('Profesores.Clases.index') }}">Clases</a>
+                <a class="nav-link" href="{{ route('Profesores.Clases.index')}}">Clases</a>
+                <a class="nav-link" href="{{ route('Profesor.ConsultarAvisos') }}">Ver avisos</a>
+                <a class="nav-link" href="{{ route('Profesores.asistencia')}}">Asistencias</a>
+                <a class="nav-link" href="{{ route('Profesores.CrearExamen')}}">Exámenes</a>
             </nav>
         </div>
     </div>
@@ -155,8 +155,8 @@
     <!-- Sidebar nav para pantallas grandes -->
     <div class="sidebar-nav d-none d-md-block">
         <a class="navbar-brand" href="#"><img src="{{ asset('images/JDKJulietasLogoNegro.png') }}" alt="Logo" id="img-logoNav"></a>
-        <nav class="navflex-column">
-            <a class="nav-link">Ver avisos</a>
+        <nav class="nav flex-column">
+        <a class="nav-link" href="{{ route('Profesor.ConsultarAvisos') }}">Ver avisos</a>
             <a class="nav-link" href="{{ route('Profesores.asistencia')}}">Asistencias</a>
             <a class="nav-link" href="{{ route('Profesores.ConsultaExamenes') }}">Exámenes</a>
             <a class="nav-link" href="{{ route('Profesores.Clases.index') }}">Clases</a>
@@ -174,10 +174,7 @@
         <div class="profile-dropdown" id="profileDropdown">
             <img src="https://via.placeholder.com/50" alt="Foto de perfil" class="rounded-circle mb-2">
             <p class="fw-bold mb-1">Usuario</p>
-            <form action="{{route ('logout')}}" method="POST">
-                @csrf <button class="btn btn-danger btn-sm w-100">Cerrar sesión</button>
-            </form>
-            
+            <button class="btn btn-danger btn-sm w-100" {{ route('Profesores.Clases.index') }}>Cerrar sesión</button>
         </div>
 
         <section id="inicio" class="mt-4">

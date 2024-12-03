@@ -4,6 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Role; 
+use App\Models\StudentBelt;
+use App\Models\EmergencyContact;
+use App\Models\EventStudent;
+use App\Models\ExamStudent;
+use App\Models\Payment;
+use App\Models\StudentClass;
+use App\Models\CustomClass;
+use App\Models\User;
+use App\Models\Exam;
 
 class Student extends Model
 {

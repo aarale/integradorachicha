@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Teacher;
+use App\Models\Student;
 
 class People extends Model
 {
     protected $table = 'people';
     protected $primaryKey = 'id';
-    public $fillable = ['first_name', 'last_name', 'birth_date', 'address', 'phone'];
+    public $fillable = ['first_name', 'last_name', 'birth_date', 'address', 
+                        'phone', 'created_at', 'updated_at'];
 
 
     public function Administrator()

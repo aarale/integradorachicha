@@ -37,9 +37,11 @@ class ExamenController extends Controller
         return view('Profesores.CrearExamen', compact('groupedStudents'));
     }
 
-    public function consultarExamenes()
-    {
+
+    public function consultarExamenes(){
         $exams = Exam::all();
+
+        //
 
         return view('Profesores.ConsultaExamenes', compact('exams'));
     }
@@ -73,6 +75,32 @@ class ExamenController extends Controller
             DB::statement('CALL store_exam_format(?, ?)', [$studentId, $examId]);
         }
         
+
+    
+
+    public function store(Request $request)
+    {
+    
+    $request->validate([
+        'name' => 'required|string|max:50',
+        'location' => 'required|string|max:75',
+        'date' => 'required|date',
+        'duration' => 'nullable|integer',
+        'description' => 'nullable|string',
+        
+    ]);
+
+    $exam =Exam::create([
+        'name' => $request->name,
+        'location' => $request->location,
+        'date' => $request->date,
+        'duration' => $request->duration,
+        'description' => $request->description,
+    ]);
+    if ($request->has('students')) {
+        $exam->students()->sync($request->students);
+    }
+    
         return redirect()->route('Profesores.CrearExamen')->with('success', 'Examen creado exitosamente.');
     }
     

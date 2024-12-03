@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class AdminController extends Controller
 {
     public function inicioAdmin()
@@ -29,5 +27,8 @@ class AdminController extends Controller
     }
     public function addusr(){
         return view('Admin.InicioAdmin');
+    }
+    public function proves(){
+        return view('Admin.Prestamos');
     }
 }

@@ -16,6 +16,10 @@ class UserRol extends Model
    
     public function users(){
         return $this->belongsTo(User::class, 'user_id');
+    public $fillable = ['user_id', 'role_id', 'created_at', 'updated_at'];
+   
+    public function User(){
+        return $this->belongsToMany(User::class, 'user_id', 'id');
     }
     
    public function roles(){

@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Models;
-use App\Http\Controllers;
-
+use App\Models\User;
+use App\Models\UserRol;
+use App\Models\People;
 use Illuminate\Database\Eloquent\Model;
+
 
 class Role extends Model
 {

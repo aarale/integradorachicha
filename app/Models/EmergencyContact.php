@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Student;
 
 class EmergencyContact extends Model
 {
     protected $table = 'emergency_contact';
     protected $primaryKey = 'id';
-    public $fillable = ['id', 'person_id', 'phone', 'email', 'created_at', 
-                        'updated_at'];
+    public $fillable = ['id', 'person_id', 'phone', 'email', 
+                        'created_at', 'updated_at'];
 
     public function Student()
     {

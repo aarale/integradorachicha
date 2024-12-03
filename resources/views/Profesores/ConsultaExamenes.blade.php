@@ -3,14 +3,14 @@
 @section('title', 'Exámenes')
 
 @section('content')
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-8 my-4">
+    <div class="row">
+        <div class="col-12 my-4">
             <div class="card shadow-lg border-light">
-                <div class="card-header text-black text-center py-3" style="border-radius: 10px 10px 0 0; ">
+                <div class="card-header text-black text-center py-3" style="border-radius: 10px 10px 0 0;">
                     <h2 class="mb-0">Exámenes</h2>
                 </div>
                 <div class="card-body p-4">
+                    <!-- Contenedor responsivo -->
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class="table-dark"  >
@@ -39,6 +39,7 @@
                                         <td><span class="badge bg-warning text-dark">Pendiente</span></td>
                                         <td><a href="#" class="text-decoration-none text-primary">Ver Alumnos</a></td>
                                         <td><a href="#" class="text-decoration-none text-success">Modificar examen</a></td>
+                                        <td><a href="#" class="text-decoration-none text-success">Editar examen</a></td>
                                         <td><a href="#" class="text-decoration-none text-info">Generar Hoja</a></td>
                                     </tr>
                                 @endforeach
@@ -55,9 +56,6 @@
             </div>
         </div>
     </div>
-</div>
-
 <!-- Añadir iconos de FontAwesome -->
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 @endsection
-    

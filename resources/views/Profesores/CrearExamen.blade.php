@@ -17,6 +17,10 @@
                         <input type="text" name="name" id="examenNombre" class="form-control" placeholder="Ingresar el nombre del examen">
                     </div>
 
+                <div class="mb-3">
+                    <label for="horaInicio" class="form-label">Duracion del examen:</label>
+                    <input type="number" name="duration"  id="horaInicio" class="form-control" placeholder="Ingresar la duración estimada del examen">
+                </div>
                     <!-- Ubicación del Examen -->
                     <div class="mb-3">
                         <label for="ubicacion" class="form-label">Ubicación del examen:</label>

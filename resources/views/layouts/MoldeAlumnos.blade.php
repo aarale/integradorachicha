@@ -142,10 +142,12 @@
         </button>
         <div class="collapse navbar-collapse" id="mobileSidebar">
             <nav class="nav flex-column">
-            <a class="nav-link" ">Ver avisos</a>
-            <a class="nav-link" href="{{ route('Profesores.asistencia')}}">Asistencias</a>
-            <a class="nav-link" href="{{ route('Profesores.ConsultaExamenes') }}">Exámenes</a>
-            <a class="nav-link" href="{{ route('Profesores.Clases.index') }}">Clases</a>
+                <a class="nav-link" href="#inicio">Avisos</a>
+                <a class="nav-link" href="#importante">Usuarios</a>
+                <a class="nav-link" href="#enviados">Finanzas</a>
+                <a class="nav-link" href="#borradores">Exámenes</a>
+                <a class="nav-link" href="#papelera">Clases</a>
+                <a class="nav-link" href="#alumnos">Alumnos</a>
             </nav>
         </div>
     </div>
