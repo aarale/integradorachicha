@@ -11,7 +11,6 @@ extends('layouts.MoldeTeachers')
     </div>
 
     <script>
-        // Simulación de datos de notificaciones
         const notifications = [
             {
                 id: 1,

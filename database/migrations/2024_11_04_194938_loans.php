@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('custom_users');
-            $table->foreignId('material_id')->constrained('materials');
             $table->enum('status', ['loaned', 'returned']);
             $table->integer('quantity');
             $table->date('transaction_date');
             $table->date('devolution_date');
             $table->timestamps();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('material_id')->constrained('materials');
         });
     }
 

@@ -58,9 +58,9 @@ class Student extends Model
         return $this->belongsToMany(CustomClass::class, 'student_classes', 'student_id', 'class_id');
     }
 
-        public function custom_user()
+        public function user()
         {
-        return $this->hasOne(CustomUser::class, 'student_id', 'id');
+        return $this->hasOne(User::class, 'student_id', 'id');
         }
         public function exams()
     {

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('message');
             $table->timestamps();
         });
-    }
+    }   
 
     /**
      * Reverse the migrations.

@@ -6,6 +6,7 @@ use App\Models\CustomClass;
 use App\Models\Student;
 use App\Models\Role; 
 use App\Models\Teacher; 
+use App\Models\User; 
 use App\Models\StudentBelt; 
 class ClaseController extends Controller
 {
@@ -13,7 +14,7 @@ class ClaseController extends Controller
 
     public function index()
 {
-    $user = auth()->user();
+    $user = auth()->User();
 
     if (!$user->teacher) {
         return redirect()->route('home')->with('error', 'No tienes clases asignadas.');

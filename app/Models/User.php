@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\MustVerifyEmaili;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class User extends Model
-{
+class User extends Authenticatable implements MustVerifyEmail{
+    use Notifiable;
     use HasFactory;
 
     protected $table = 'users';
@@ -17,7 +20,7 @@ class User extends Model
 
     protected $fillable = [
         'person_id',
-        'username',
+        'name',
         'password',
         'email',
         'recovery_email',
@@ -27,9 +30,41 @@ class User extends Model
         'profile_picture',
     ];
 
-    // Definir relación con la tabla 'people'
     public function person()
     {
         return $this->belongsTo(people::class);
     }
+    
+    public function materials()
+    {
+        return $this->belongsToMany(Material::class, 'loans', 'user_id', 'material_id');
+    }
+
+    
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
+    }
+    
+    public function userRoles(){
+        return $this->hasMany(UserRol::class, 'user_id');
+    }
+
+    public function Loan(){
+
+        return $this->hasMany(Loan::class, 'user_id', 'id');
+    }
+
+    
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class, 'person_id', 'person_id');
+    }
+
+
+    public function hasRole($role)
+    {
+        return $this->roles()->where('name', $role)->exists();
+    }
+
 }

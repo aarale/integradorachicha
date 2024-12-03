@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    dashboard
+    <h1>¡Hola {{ $user->name }}!</h1>
+        <p>Tu registro ha sido exitoso. Bienvenido al sistema.</p>
 </body>
-
 </html>

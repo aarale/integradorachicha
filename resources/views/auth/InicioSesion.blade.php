@@ -77,7 +77,7 @@
             @csrf
             <div class="form-group">
                 <label for="username">Usuario:</label>
-                <input type="text" class="form-control" id="username" name="username" value="{{odl('username')}}"placeholder="Ingresa tu usuario" required>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Ingresa tu usuario" required>
                 @error('email')
                     <div>{{$message}}</div>
                 @enderror

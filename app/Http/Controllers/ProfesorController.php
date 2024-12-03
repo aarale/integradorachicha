@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\CustomUser;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 
 class ProfesorController extends Controller

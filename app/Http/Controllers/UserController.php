@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\CustomUser;
 use App\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -14,6 +13,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\RegistrationMail;
 use App\Models\User;
+use App\Notifications\RegistroUsuarioNotification;
+
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -23,14 +26,14 @@ class UserController extends Controller
 
     public function index(): View
     {
-        $users = DB::table('custom_users')->where('active', 1)->get();
+        $users = DB::table('users')->where('active', 1)->get();
         return view('users.index', ['users' => $users]);
     }
 
     public function getlogin()
     {
         $User = null;
-        $User = CustomUser::all();
+        $User = User::all();
         return view('auth.InicioSesion');
     }
 
@@ -45,7 +48,8 @@ class UserController extends Controller
 
     public function authenticate(Request $request)
 {
-    $credentials = $request->only('username', 'password');
+    
+    $credentials = $request->only('name', 'password');
 
     if (Auth::attempt($credentials)) {
         $user = Auth::user();   
@@ -53,7 +57,7 @@ class UserController extends Controller
         
         
         switch ($role) {
-            case 'administrator':
+            case 'admin':
                 return redirect()->route('admin.inicioAdmin'); 
             case 'teacher':
                 return redirect()->route('Profesores.CrearExamen'); 
@@ -64,7 +68,7 @@ class UserController extends Controller
     }
 
     return back()->withErrors([
-        'username' => 'Las credenciales no coinciden.',
+        'name' => 'Las credenciales no coinciden.',
     ]);
 }
 
@@ -191,7 +195,7 @@ class UserController extends Controller
         ]);
         $user = User::where('email', $validatedData['email'])->first();
 
-        Mail::to($user->email)->send(new RegistrationMail($user));
+       $user->notify(new RegistroUsuarioNotification($user));
 
         return redirect()->route('admin.users.create')->with('success', 'Usuario creado exitosamente');
     } catch (\Exception $e) {

@@ -142,7 +142,7 @@
         </button>
         <div class="collapse navbar-collapse" id="mobileSidebar">
             <nav class="nav flex-column">
-            <a class="nav-link" ">Ver avisos</a>
+            <a class="nav-link" >Ver avisos</a>
             <a class="nav-link" href="{{ route('Profesores.asistencia')}}">Asistencias</a>
             <a class="nav-link" href="{{ route('Profesores.ConsultaExamenes') }}">Exámenes</a>
             <a class="nav-link" href="{{ route('Profesores.Clases.index') }}">Clases</a>
