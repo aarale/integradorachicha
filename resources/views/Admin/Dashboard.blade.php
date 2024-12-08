@@ -1,4 +1,5 @@
 @extends('layouts.MoldeAdmin')
-@section('title', 'Clases')
+@section('title', 'Dashboard')
 @section('content')
+agdusu
 @endsection

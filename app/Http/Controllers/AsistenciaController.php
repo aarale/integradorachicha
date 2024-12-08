@@ -10,32 +10,42 @@ use App\Models\Attendance;
 class AsistenciaController extends Controller
 {
     public function mostrarAsistencia()
-    {
-        $classId = 7; 
+{
+    $classId = 7; 
 
-        $query = "
-        SELECT 
-            p.first_name,
-            p.last_name,
-            a.attendance_status AS attendance
-        FROM 
-            attendance a
-        JOIN 
-            students s ON a.student_id = s.id
-        JOIN 
-            people p ON s.person_id = p.id
-        WHERE 
-            a.class_id = ? 
-        ";
+    $lastCreatedAt = DB::table('attendance')
+        ->where('class_id', $classId)
+        ->orderBy('created_at', 'desc')
+        ->value('created_at');
 
-        $attendances = DB::select($query, [$classId]);
-
-        foreach ($attendances as $attendance) {
-            $attendance->attendance = (bool) $attendance->attendance; 
-        }
-
-        return view('Profesores.asistencia', compact('attendances'));
+    if (!$lastCreatedAt) {
+        return view('Profesores.asistencia', ['attendances' => []]);
     }
+
+    $query = "
+    SELECT 
+        p.first_name,
+        p.last_name,
+        a.attendance_status AS attendance,
+        a.created_at AS date
+    FROM 
+        attendance a
+    JOIN 
+        students s ON a.student_id = s.id
+    JOIN 
+        people p ON s.person_id = p.id
+    WHERE 
+        a.class_id = ? AND a.created_at = ?
+    ";
+
+    $attendances = DB::select($query, [$classId, $lastCreatedAt]);
+
+    foreach ($attendances as $attendance) {
+        $attendance->attendance = (bool) $attendance->attendance; 
+    }
+
+    return view('Profesores.asistencia', compact('attendances'));
+}
     
 
     public static function attendancestudent()
@@ -79,7 +89,7 @@ class AsistenciaController extends Controller
     
     public function guardarAsistencia(Request $request)
     {
-    $attendanceData = $request->input('attendance', []);
+        $attendanceData = $request->input('attendance', []);
 
     foreach ($attendanceData as $studentId => $status) {
         Attendance::updateOrCreate(

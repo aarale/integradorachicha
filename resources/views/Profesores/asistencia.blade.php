@@ -55,6 +55,7 @@
                             @foreach ($attendances as $attendance)
                                 <tr>
                                     <td>{{ $attendance->first_name }} {{ $attendance->last_name }}</td>
+                                    <td>{{ $attendance->date }}</td>
                                     <td>{{ $attendance->attendance ? 'Presente' : 'Ausente' }}</td>
                                 </tr>
                             @endforeach

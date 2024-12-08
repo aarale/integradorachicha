@@ -46,10 +46,10 @@ class UserController extends Controller
         
         
         switch ($role) {
-            case 'administrator':
-                return redirect()->route('admin.inicioAdmin'); 
+            case 'admin':
+                return redirect()->route('InicioAdmin'); 
             case 'teacher':
-                return redirect()->route('Profesores.CrearExamen'); 
+                return redirect()->route('InicioProfesores'); 
             case 'student':
                 return redirect()->route('alumno.avisos'); 
             
@@ -91,7 +91,7 @@ class UserController extends Controller
         }
 
         $beltId = $validatedData['role_id'] == 3 ? $validatedData['belt_id'] : null;
-        dd($validatedData);
+        
 
         DB::statement('CALL InsertUser(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
             $validatedData['first_name'],

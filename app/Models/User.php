@@ -8,6 +8,7 @@ use App\Models\UserRol;
 use App\Models\Loan;
 use App\Models\Teacher;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -19,6 +20,8 @@ class User extends Authenticatable
         'password',
     ];
 
+    use HasRoles;
+
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
@@ -28,21 +31,29 @@ class User extends Authenticatable
         return $this->hasMany(UserRol::class, 'user_id', 'id');
     }
 
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class, 'person_id', 'id');
+    }
+
+    public function admin()
+    {
+        return $this->hasOne(Administrator::class, 'person_id', 'id');
+    }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class, 'person_id', 'id');
+    }
+
     public function Loan(){
 
         return $this->hasMany(Loan::class, 'user_id', 'id');
     }
 
-public function teacher()
-{
-    return $this->hasOne(Teacher::class, 'person_id', 'person_id');
-}
-
-
-public function hasRole($role)
-{
-    return $this->roles()->where('name', $role)->exists();
-}
-
-
+    public function hasRole($role)
+    {
+        return $this->roles()->where('name', $role)->exists();
+    }
+    
 }

@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 class ProfesorController extends Controller
 {
     public function vistaprincipal(){
-        return view('inicio');
+        return view('Profesores.Dashboard');
     }
 
 

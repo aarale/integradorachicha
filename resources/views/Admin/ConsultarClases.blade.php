@@ -9,7 +9,7 @@
 <body>
 @extends('layouts.MoldeAdmin')
 
-@section('title', 'Mis Clases')
+@section('title', 'Lista de Clases')
 
 @section('content')
 <div class="container">
@@ -33,7 +33,7 @@
                 <td>{{ $class->period }}</td>
                 <td>{{ $class->student_count }}</td>
                 <td>
-                    <a href="{{ route('profesor.edit', $teacherId) }}" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal" onclick="loadClassData({{ json_encode($class) }})">Editar</a>
+                    <a href="{{ route('admin.consultarClases') }}" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal" onclick="loadClassData({{ json_encode($class) }})">Editar</a>
                 </td>
             </tr>
             @endforeach

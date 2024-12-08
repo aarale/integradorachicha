@@ -43,7 +43,7 @@
 </style>
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Asistencias de las Clases</h1>
+    <h1 class="text-center mb-4">Tomar Asistencia</h1>
     
     @if(session('success'))
         <div class="alert alert-success">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.MoldeAdmin')
 
 @section('title', 'Participantes de la Clase')
 

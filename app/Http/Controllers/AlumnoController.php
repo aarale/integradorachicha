@@ -48,12 +48,35 @@ class AlumnoController extends Controller
     }
 
 
-    public function show($id)
+    public function show()
     {
-        $student = Student::findOrFail($id);
-    return view('alumno.show', compact('student'));
+        $query = "
+        SELECT 
+    s.id AS student_id,
+    p.first_name AS student_first_name,
+    p.last_name AS student_last_name,
+    p.birth_date AS student_birth_date,
+    p.address AS student_address,
+    p.phone AS student_phone,
+    ec.first_name AS emergency_contact_first_name,
+    ec.last_name AS emergency_contact_last_name,
+    ec.phone AS emergency_contact_phone,
+    ec.relationship AS emergency_contact_relationship
+    FROM 
+    students s
+    JOIN 
+    people p ON s.person_id = p.id
+    LEFT JOIN 
+    emergency_contact ec ON s.emergency_contact_id = ec.id
+    ORDER BY 
+    s.id;";
+
+        $students = DB::select($query);
+
+        return view('alumno.show', compact('students'));
     }
 
+    
     public function payments($studentId)
     {
         $payments = DB::select("
