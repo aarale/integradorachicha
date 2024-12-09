@@ -144,7 +144,7 @@
             <nav class="nav flex-column">
             <a class="nav-link" href="{{ route('Profesores.ConsultarAvisos') }}">Ver avisos</a>
             <a class="nav-link" href="{{ route('profesor.asistencia')}}">Asistencias</a>
-            <a class="nav-link" href="{{ route('Profesores.ConsultaExamenes') }}">Exámenes</a>
+            <a class="nav-link" href="{{ route('Profesores.CrearExamen') }}">Exámenes</a>
             <a class="nav-link" href="{{ route('Profesores.Clases.index') }}">Clases</a>
             </nav>
         </div>
@@ -158,7 +158,7 @@
         <nav class="navflex-column">
         <a class="nav-link" href="{{ route('Profesores.ConsultarAvisos') }}">Ver avisos</a>
             <a class="nav-link" href="{{ route('profesor.asistencia')}}">Asistencias</a>
-            <a class="nav-link" href="{{ route('Profesores.ConsultaExamenes') }}">Exámenes</a>
+            <a class="nav-link" href="{{ route('Profesores.CrearExamen') }}">Exámenes</a>
             <a class="nav-link" href="{{ route('Profesores.Clases.index') }}">Clases</a>
         </nav>
     </div>

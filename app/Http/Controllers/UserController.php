@@ -51,7 +51,7 @@ class UserController extends Controller
             case 'teacher':
                 return redirect()->route('InicioProfesores'); 
             case 'student':
-                return redirect()->route('alumno.avisos'); 
+                return redirect()->route('alumno.Inicio');  
             
         }
     }

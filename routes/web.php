@@ -75,9 +75,9 @@ Route::middleware(['role:admin'])->prefix('/admin')->group(function () {
     Route::get('/consultar/usuarios', [AdminController::class, 'consultusers'])->name('admin.consultarusuarios');
     Route::get('/consultar/inventario', [AdminController::class, 'inventario'])->name('admin.consultarinventario');
 
-    Route::get('/admin/profesores/clases', [ClaseController::class, 'teacher_classes_byId'])->name('profesor.clases');
-    Route::get('/admin/profesores/clases/{teacherId}/editar', [ClaseController::class, 'edit'])->name('profesor.edit');
-    Route::put('admin/profesores/clases/{teacherId}/actualizar', [ClaseController::class, 'update'])->name('profesor.actualizar');
+    // Route::get('/admin/profesores/clases', [ClaseController::class, 'teacher_classes_byId'])->name('profesor.clases');
+    // Route::get('/admin/profesores/clases/{teacherId}/editar', [ClaseController::class, 'edit'])->name('profesor.edit');
+    // Route::put('admin/profesores/clases/{teacherId}/actualizar', [ClaseController::class, 'update'])->name('profesor.actualizar');
 
         
     Route::get('/crear/clase', [ClaseController::class, 'create'])->name('admin.clases.create');
@@ -99,7 +99,7 @@ Route::middleware(['role:admin'])->prefix('/admin')->group(function () {
         Route::get('/avisosp', [AvisoController::class, 'index'])->name('Profesor.ConsultarAvisos');
         Route::get('/clasesb/{id}', [ClaseController::class, 'index'])->name('classes.index');
         Route::get('/alumno/{id}', [AlumnoController::class, 'show'])->name('alumno.show');
-    Route::get('/consulta/examenes', [ExamenController::class, 'consultarExamenes'])->name('Profesores.ConsultaExamenes');
+   // Route::get('/consulta/examenes', [ExamenController::class, 'consultarExamenes'])->name('Profesores.ConsultaExamenes');
     Route::get('profesores/avisos', [AvisoController::class, 'avisosTeacher'])->name('Profesores.ConsultarAvisos');
         Route::get('/dashboard', [ProfesorController::class, 'index'])->name('profesor.dashboard');
         Route::get('/clasesc', [ClaseController::class, 'index'])->name('Profesores.Clases.index');
@@ -125,10 +125,17 @@ Route::middleware(['role:admin'])->prefix('/admin')->group(function () {
 Route::middleware(['role:teacher'])->get('/profesores', [ProfesorController::class, 'vistaprincipal']); 
 Route::prefix('profesores')->group(function () {
     Route::get('/Inicio', [ProfesorController::class, 'vistaprincipal'])->name('InicioProfesores');
+    Route::get('/admin/profesores/clases', [ClaseController::class, 'teacher_classes_byId'])->name('profesor.clases');
+    Route::get('/admin/profesores/clases/{teacherId}/editar', [ClaseController::class, 'edit'])->name('profesor.edit');
+    Route::put('admin/profesores/clases/{teacherId}/actualizar', [ClaseController::class, 'update'])->name('profesor.actualizar');
+
+    Route::get('/CrearExamen', [ExamenController::class, 'consult'])->name('Profesores.CrearExamen');
+    Route::post('/ConsultarExamenes', [ExamenController::class, 'consultarExamenes'])->name('Profesores.ConsultaExamenes');
 });
 
 // Rutas para alumno
-Route::middleware(['role:student'])->get('/alumnos', [AlumnoController::class, 'alumno.avisos'])->name('alumno.avisos');
-Route::prefix('alumnos')->group(function () {
+Route::middleware(['role:student'])->get('/alumno', [AlumnoController::class, 'Inicio'])->name('alumno.Inicio');
+Route::prefix('alumno')->group(function () {
+    Route::get('/Finanzas', [AlumnoController::class, 'finanzas'])->name('alumno.finanzas');
 });
 

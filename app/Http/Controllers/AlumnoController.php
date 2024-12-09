@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class AlumnoController extends Controller
 {
-    public function avisos()
+    public function Inicio()
     {
-        return view('Alumno.Avisos');
+        return view('Alumno.Inicio');
     }
 
 

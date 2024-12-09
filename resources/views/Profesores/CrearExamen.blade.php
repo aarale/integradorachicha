@@ -27,17 +27,12 @@
                         <input type="text" name="location" id="ubicacion" class="form-control" placeholder="Ingresar la ubicación del examen">
                     </div>
 
-                    <!-- Fecha y hora del Examen -->
                     <div class="mb-3">
                         <label for="fechaExamen" class="form-label">Fecha y hora del examen:</label>
                         <div class="input-group">
-                            <input type="datetime-local" name="date" id="input-first-name" aria-label="First name" class="form-control">
+                            <input type="datetime-local" name="date" id="input-first-name" aria-label="First name" class="form-control" 
+                                   min="<?php echo date('Y-m-d\TH:i'); ?>">
                         </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="horaInicio" class="form-label">Duración del examen (en minutos):</label>
-                        <input type="number" name="duration" id="horaInicio" class="form-control" placeholder="Ingresar la duración del examen">
                     </div>
 
                     <div class="mb-3">
@@ -57,7 +52,7 @@
                     @endforeach
             
                     <button type="submit" class="btn btn-primary">Crear Examen</button>
-                    <a href="{{ route('Profesores.ConsultaExamenes') }}" class="btn btn-secondary">Ver Examenes</a>
+                    <a href="{{ route('Profesores.CrearExamen') }}" class="btn btn-secondary">Ver Examenes</a>
                 </form>
             </div>
         </div>

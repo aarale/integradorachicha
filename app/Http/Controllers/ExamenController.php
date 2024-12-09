@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Exam;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExamenController extends Controller
 {
@@ -24,7 +25,7 @@ class ExamenController extends Controller
 
 public function consult()
 {
-    $teacherId = 1;
+    $teacherId = Auth::user()->id;
 
     $students = DB::table('students')
         ->join('people', 'students.person_id', '=', 'people.id') 
@@ -37,7 +38,7 @@ public function consult()
         
     $groupedStudents = $students->groupBy('class_id');
     
-    return view('Profesores.CrearExamen', compact('groupedStudents'));
+    return view('Profesores.CrearExamen', compact('groupedStudents', 'teacherId'));
 }
 
 
